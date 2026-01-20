@@ -1,16 +1,18 @@
 import QtQuick
 import Quickshell
-import "src/StatusBar"
 
-PanelWindow {
+import "./src/StatusBar"
+import "./src/Notifications"
+
+StatusBar {
+    id: statusbar
+
     anchors {
         top: true
     }
 
-    color: "transparent"
+    color: "#AB101080"
 
     implicitWidth: Screen.width
-    implicitHeight: 24
-
-    StatusBar {}
+    implicitHeight: 25
 }
