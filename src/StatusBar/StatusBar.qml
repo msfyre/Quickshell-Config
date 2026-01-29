@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
 
 PanelWindow {
@@ -6,32 +7,36 @@ PanelWindow {
         width: parent.width * 0.3
         height: parent.height
 
-        layoutRadius: 10
-        layoutMargin: 2
+        layoutRadius: 5
 
         focusedWidth: 25
         focusedHeight: 12
         diameter: 8
 
-        color: "#B2000000"
+        color: "#020f24"
 
         anchors {
             left: parent.left
             leftMargin: 10
             top: parent.top
-            topMargin: 3
+            topMargin: 5
             verticalCenter: parent.verticalCenter
         }
     }
 
     Clock {
-        anchors.centerIn: parent
-
         width: 165
         height: parent.height
 
-        radius: 10
+        radius: 5
 
-        color: "#020f24"
+        anchors {
+            top: parent.top
+            topMargin: 2
+            verticalCenter: parent.verticalCenter
+            horizontalCenter: parent.horizontalCenter
+        }
+
+        color: "#020F24"
     }
 }

@@ -1,18 +1,43 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import Quickshell
 
 import "./src/StatusBar"
-import "./src/Notifications"
+import "./src/Calendar"
 
-StatusBar {
-    id: statusbar
+Singleton {
+    id: root
 
-    anchors {
-        top: true
+    StatusBar {
+        id: statusbar
+
+        anchors {
+            top: true
+        }
+
+        color: "transparent"
+
+        implicitWidth: Screen.width
+        implicitHeight: 30
     }
 
-    color: "#AB101080"
+    PanelWindow {
+        anchors {
+            left: true
+            bottom: true
+        }
 
-    implicitWidth: Screen.width
-    implicitHeight: 25
+        aboveWindows: false
+
+        implicitWidth: 275
+        implicitHeight: 200
+
+        color: "#A0020F24"
+
+        Calendar {
+            fontFace: "JetBrainsMono Nerd Font"
+            fontSize: 8
+        }
+    }
 }

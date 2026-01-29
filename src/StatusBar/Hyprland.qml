@@ -8,7 +8,6 @@ Rectangle {
     id: root
 
     required property double layoutRadius
-    required property double layoutMargin
 
     required property double focusedWidth
     required property double focusedHeight
@@ -94,7 +93,7 @@ Rectangle {
 
             anchors.centerIn: root
 
-            color: "#10FFFFFF"
+            color: "#50000000"
 
             Text {
                 width: parent.width
