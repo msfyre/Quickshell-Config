@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Layouts
 import Quickshell
 
 PanelWindow {
@@ -38,5 +37,22 @@ PanelWindow {
         }
 
         color: "#020F24"
+    }
+
+    Hardware {
+        width: parent.width * 0.1
+        height: parent.height
+
+        color: "transparent"
+
+        anchors {
+            right: parent.right
+            rightMargin: 10
+            top: parent.top
+            topMargin: 5
+            verticalCenter: parent.verticalCenter
+        }
+
+        buttonRadius: 5
     }
 }

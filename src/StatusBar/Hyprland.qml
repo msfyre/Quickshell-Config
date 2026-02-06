@@ -46,7 +46,7 @@ Rectangle {
                 radius: root.layoutRadius
 
                 Rectangle {
-                    id: glow
+                    id: bean
 
                     width: workspaceBox.modelData.focused ? root.focusedWidth : root.diameter
                     height: workspaceBox.modelData.focused ? root.focusedHeight : root.diameter

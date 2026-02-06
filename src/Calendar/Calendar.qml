@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import Quickshell.Io
 
 Rectangle {
@@ -16,12 +17,12 @@ Rectangle {
     color: "transparent"
 
     Process {
-        id: dateProcess
+        id: date
 
         property string dateToday: "Jan. 1, 1970"
 
         running: true
-        command: ["date", '+%b. %d, %Y']
+        command: ["date", '+| %b | %d | %Y |']
 
         stdout: StdioCollector {
             onStreamFinished: () => {
@@ -31,7 +32,7 @@ Rectangle {
     }
 
     Process {
-        id: calendarProcess
+        id: calendar
 
         running: true
         command: ["cal"]
@@ -39,8 +40,8 @@ Rectangle {
         property string calendarOut: "Um..."
 
         onRunningChanged: () => {
-            if (!calendarProcess.running) {
-                calendarProcess.running = true;
+            if (!calendar.running) {
+                calendar.running = true;
             }
         }
 
@@ -55,7 +56,7 @@ Rectangle {
         width: renderRoot.width
         height: renderRoot.height
 
-        spacing: -25
+        spacing: -20
 
         anchors.centerIn: parent
 

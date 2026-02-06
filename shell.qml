@@ -5,6 +5,7 @@ import Quickshell
 
 import "./src/StatusBar"
 import "./src/Calendar"
+import "./src/MusicPlayer/"
 
 Singleton {
     id: root
@@ -39,5 +40,27 @@ Singleton {
             fontFace: "JetBrainsMono Nerd Font"
             fontSize: 8
         }
+    }
+
+    MusicPlayer {
+        anchors {
+            right: true
+            bottom: true
+        }
+
+        aboveWindows: false
+
+        width: Screen.width * 0.4
+        height: 25
+
+        windowRadius: 5
+
+        buttonColor: "#020f24"
+        buttonRadius: 50
+
+        buttonFontFamily: "JetBrainsMono Nerd Font"
+        buttonTextSize: 12
+
+        color: "transparent"
     }
 }
