@@ -31,14 +31,14 @@ Singleton {
 
         aboveWindows: false
 
-        implicitWidth: 275
+        implicitWidth: 300
         implicitHeight: 200
 
         color: "#A0020F24"
 
         Calendar {
             fontFace: "JetBrainsMono Nerd Font"
-            fontSize: 8
+            fontSize: 7.5
         }
     }
 

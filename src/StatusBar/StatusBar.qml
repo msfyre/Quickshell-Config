@@ -2,14 +2,12 @@ import QtQuick
 import Quickshell
 
 PanelWindow {
-    Hyprland {
+    HyprlandTab {
         width: parent.width * 0.3
         height: parent.height
 
         layoutRadius: 5
 
-        focusedWidth: 25
-        focusedHeight: 12
         diameter: 8
 
         color: "#020f24"

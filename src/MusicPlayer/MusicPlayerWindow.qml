@@ -44,57 +44,77 @@ Rectangle {
         }
 
         onRunningChanged: () => {
-            mpd_playing.running = true;
+            running = true;
         }
     }
 
-    RowLayout {
+    Row {
         id: mainlayout
 
         anchors.fill: parent
+        anchors.right: parent.right
 
-        Layout.alignment: Qt.AlignRight
+        Rectangle {
+            id: space
 
-        // TODO: ADD MORE BUTTONS
-        // @msfyre, (Feb. 4, 2026)
+            width: parent.parent.width - (playing.width + rmpc_button.width)
+            height: parent.parent.height
+
+            color: "transparent"
+        }
 
         Rectangle {
             id: playing
 
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            implicitWidth: 0
-
-            radius: renderRoot.buttonRadius || 0
+            width: playing_text.implicitWidth + (playing_text.anchors.leftMargin + playing_text.anchors.rightMargin)
+            height: parent.height
 
             color: renderRoot.buttonColor
+
+            radius: renderRoot.buttonRadius
+
+            Behavior on width {
+                NumberAnimation {
+                    duration: text_opacity_animation.duration / 5
+                }
+            }
 
             Text {
                 id: playing_text
 
-                text: mpd_playing.track || "Nothing's playing!"
+                wrapMode: Text.NoWrap
+
+                text: mpd_playing.track || "Nothing is playing right now..."
 
                 anchors {
+                    fill: parent
                     left: parent.left
                     leftMargin: 10
                     right: parent.right
                     rightMargin: 10
+                    verticalCenter: parent.verticalCenter
                 }
 
                 font.family: renderRoot.buttonFontFamily
                 font.pixelSize: renderRoot.buttonTextSize || renderRoot.height
-
-                width: parent.width
-                height: parent.height
 
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
 
                 color: "white"
 
-                Component.onCompleted: () => {
-                    playing.implicitWidth = playing_text.contentWidth;
+                Behavior on text {
+                    PropertyAnimation {
+                        id: text_opacity_animation
+
+                        target: playing_text
+                        property: "opacity"
+
+                        from: 0
+                        to: 1
+
+                        duration: 500
+                    }
                 }
             }
         }
@@ -102,8 +122,8 @@ Rectangle {
         Rectangle {
             id: rmpc_button
 
-            width: 50
-            Layout.fillHeight: true
+            implicitWidth: 75
+            implicitHeight: parent.parent.height
 
             color: renderRoot.buttonColor
 
