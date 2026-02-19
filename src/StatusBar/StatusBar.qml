@@ -2,55 +2,97 @@ import QtQuick
 import Quickshell
 
 PanelWindow {
-    HyprlandTab {
-        width: parent.width * 0.3
-        height: parent.height
+    id: root
 
-        layoutRadius: 5
+    property double layoutRadius;
 
-        diameter: 8
+    Row {
+        anchors.fill: parent
 
-        color: "#020f24"
+        Rectangle {
+            id: left_widgets
 
-        anchors {
-            left: parent.left
-            leftMargin: 10
-            top: parent.top
-            topMargin: 5
-            verticalCenter: parent.verticalCenter
-        }
-    }
+            width: parent.width / 3
+            height: parent.height
 
-    Clock {
-        width: 165
-        height: parent.height
+            color: "transparent"
 
-        radius: 5
+            anchors {
+                top: parent.top
+                topMargin: 5
+                verticalCenter: parent.verticalCenter
+            }
 
-        anchors {
-            top: parent.top
-            topMargin: 2
-            verticalCenter: parent.verticalCenter
-            horizontalCenter: parent.horizontalCenter
-        }
+            Row {
+                anchors.fill: parent
 
-        color: "#020F24"
-    }
+                spacing: 4
 
-    Hardware {
-        width: parent.width * 0.1
-        height: parent.height
 
-        color: "transparent"
+                HyprlandTab {
+                    width: parent.width
+                    height: parent.height
 
-        anchors {
-            right: parent.right
-            rightMargin: 10
-            top: parent.top
-            topMargin: 5
-            verticalCenter: parent.verticalCenter
+                    layoutRadius: root.layoutRadius
+
+                    diameter: 8
+
+                    color: "#020f24"
+                }
+            }
         }
 
-        buttonRadius: 5
+        Rectangle {
+            id: center_widgets
+
+            width: parent.width / 3
+            height: parent.height
+
+            color: "transparent"
+
+            Row {
+                anchors.fill: parent
+
+                Clock {
+                    width: parent.width / 3
+                    height: parent.height
+
+                    radius: 5
+
+                    anchors {
+                        top: parent.top
+                        topMargin: 2
+                        verticalCenter: parent.verticalCenter
+                        horizontalCenter: parent.horizontalCenter
+                    }
+
+                    color: "#020F24"
+                }
+            }
+        }
+
+        Rectangle {
+            id: right_widgets
+
+            width: parent.width / 3
+            height: parent.height
+
+            color: "transparent"
+
+            anchors {
+                top: parent.top
+                topMargin: 5
+                verticalCenter: parent.verticalCenter
+            }
+
+            Row {
+                anchors.fill: parent
+
+                Hardware {
+                    width: parent.width / 2
+                    height: parent.height
+                }
+            }
+        }
     }
 }

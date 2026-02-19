@@ -6,6 +6,7 @@ import Quickshell
 import "./src/StatusBar"
 import "./src/Calendar"
 import "./src/MusicPlayer/"
+import "./src/Volume/"
 
 Singleton {
     id: root
@@ -21,6 +22,8 @@ Singleton {
 
         implicitWidth: Screen.width
         implicitHeight: 30
+
+        layoutRadius: 5
     }
 
     PanelWindow {
@@ -50,7 +53,7 @@ Singleton {
 
         aboveWindows: false
 
-        width: Screen.width * 0.4
+        width: Screen.width
         height: 25
 
         windowRadius: 5
@@ -63,4 +66,13 @@ Singleton {
 
         color: "transparent"
     }
+
+    // TODO: Make this functional
+    /*VolumeIndicatorPanel {
+        implicitWidth: 250
+        implicitHeight: 40
+
+        x_pos: 50
+        y_pos: 25
+        }*/
 }

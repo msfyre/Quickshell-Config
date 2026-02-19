@@ -1,31 +1,31 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
-import QtQuick.Layouts
 
 Rectangle {
     id: renderRoot
 
     property int buttonRadius
 
-    RowLayout {
-        width: parent.width
-        height: parent.height
+    color: "transparent"
+
+    Row {
+        anchors.fill: parent
 
         Audio {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            width: parent.width / 2
+            height: parent.height
 
-            radius: renderRoot.buttonRadius
+            radius: root.layoutRadius
 
             color: "#020F24"
         }
 
         Wifi {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            width: parent.width / 2
+            height: parent.height
 
-            radius: renderRoot.buttonRadius
+            radius: root.layoutRadius
 
             color: "#020F24"
         }

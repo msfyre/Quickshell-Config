@@ -27,9 +27,9 @@ Rectangle {
     }
 
     Process {
-        id: iwgtkProcess
+        id: mixerProcess
 
-        command: ["pavucontrol"]
+        command: ["pulsemixer"]
         running: false
     }
 
@@ -38,7 +38,7 @@ Rectangle {
         height: parent.height
 
         onClicked: () => {
-            iwgtkProcess.running = true;
+            mixerProcess.running = true;
         }
     }
 }
