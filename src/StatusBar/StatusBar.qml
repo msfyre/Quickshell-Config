@@ -88,9 +88,34 @@ PanelWindow {
             Row {
                 anchors.fill: parent
 
+                Rectangle {
+                    id: adjustor
+                    height: parent.height
+
+                    color: "transparent"
+                }
+
                 Hardware {
+                    id: hardware
+
                     width: parent.width / 2
                     height: parent.height
+
+                    buttonRadius: root.layoutRadius
+                    buttonColor: "#020F24"
+                }
+
+                NotifCenter {
+                    id: notif_center
+                    width: parent.width / 10
+                    height: parent.height
+
+                    radius: root.layoutRadius
+                    color: "#020F24"
+                }
+
+                Component.onCompleted: {
+                    adjustor.width = parent.width - hardware.width - notif_center.width
                 }
             }
         }

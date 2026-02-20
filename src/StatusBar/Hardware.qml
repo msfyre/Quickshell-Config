@@ -5,7 +5,8 @@ import QtQuick
 Rectangle {
     id: renderRoot
 
-    property int buttonRadius
+    property string buttonColor
+    property double buttonRadius
 
     color: "transparent"
 
@@ -16,18 +17,18 @@ Rectangle {
             width: parent.width / 2
             height: parent.height
 
-            radius: root.layoutRadius
+            radius: renderRoot.buttonRadius
 
-            color: "#020F24"
+            color: buttonColor
         }
 
         Wifi {
             width: parent.width / 2
             height: parent.height
 
-            radius: root.layoutRadius
+            radius: renderRoot.buttonRadius
 
-            color: "#020F24"
+            color: buttonColor
         }
     }
 }
