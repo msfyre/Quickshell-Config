@@ -6,7 +6,6 @@ import Quickshell
 import "./src/StatusBar"
 import "./src/Calendar"
 import "./src/MusicPlayer/"
-import "./src/Volume/"
 
 Singleton {
     id: root
@@ -26,7 +25,7 @@ Singleton {
         layoutRadius: 5
     }
 
-    PanelWindow {
+    Date {
         anchors {
             left: true
             bottom: true
@@ -34,35 +33,29 @@ Singleton {
 
         aboveWindows: false
 
-        implicitWidth: 300
+        width: msx_player.renderedWidth
         implicitHeight: 200
 
         color: "#A0020F24"
-
-        Calendar {
-            fontFace: "JetBrainsMono Nerd Font"
-            fontSize: 7.5
-        }
+        fontFace: "JetBrainsMono Nerd Font"
+        pixelFontSize: 10
     }
 
     MusicPlayer {
+        id: msx_player
+
         anchors {
-            right: true
             bottom: true
         }
 
-        aboveWindows: false
-
         width: Screen.width
         height: 25
-
-        windowRadius: 5
 
         buttonColor: "#020f24"
         buttonRadius: 50
 
         buttonFontFamily: "JetBrainsMono Nerd Font"
-        buttonTextSize: 12
+        buttonTextSize: 10
 
         color: "transparent"
     }
