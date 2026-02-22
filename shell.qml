@@ -2,70 +2,22 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
 
-import "./src/StatusBar"
-import "./src/Calendar"
-import "./src/MusicPlayer/"
+import "./src/"
 
 Singleton {
     id: root
 
-    StatusBar {
-        id: statusbar
+    // TODO: Make a way to read the JSON color scheme file
 
-        anchors {
-            top: true
-        }
+    Top {
+        id: top
 
-        color: "transparent"
+        implicitHeight: 25
 
-        implicitWidth: Screen.width
-        implicitHeight: 30
-
-        layoutRadius: 5
+        elementHeight: 10
+        elementRadius: 5
+        elementColor: "#121318"
     }
-
-    Date {
-        anchors {
-            left: true
-            bottom: true
-        }
-
-        aboveWindows: false
-
-        width: msx_player.renderedWidth
-        implicitHeight: 200
-
-        color: "#A0020F24"
-        fontFace: "JetBrainsMono Nerd Font"
-        pixelFontSize: 10
-    }
-
-    MusicPlayer {
-        id: msx_player
-
-        anchors {
-            bottom: true
-        }
-
-        width: Screen.width
-        height: 25
-
-        buttonColor: "#020f24"
-        buttonRadius: 50
-
-        buttonFontFamily: "JetBrainsMono Nerd Font"
-        buttonTextSize: 10
-
-        color: "transparent"
-    }
-
-    // TODO: Make this functional
-    /*VolumeIndicatorPanel {
-        implicitWidth: 250
-        implicitHeight: 40
-
-        x_pos: 50
-        y_pos: 25
-        }*/
 }
