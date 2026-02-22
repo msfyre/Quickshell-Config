@@ -18,6 +18,10 @@ Rectangle {
         }
     }
 
+    property double idleWidth: parent.width * 0.1
+    property double hoveredWidth: parent.width * 0.35
+    property double focusedWidth: parent.width * 0.3
+
     Row {
         anchors.fill: parent
 
@@ -40,7 +44,7 @@ Rectangle {
                 Rectangle {
                     id: indicator
 
-                    width: parent.width * 0.25
+                    width: workspaceButton.modelData.focused ? bar_base.focusedWidth : bar_base.idleWidth
                     height: parent.height
 
                     anchors.centerIn: parent
@@ -66,11 +70,11 @@ Rectangle {
                     hoverEnabled: true
 
                     onEntered: {
-                        indicator.width = parent.width * 0.35;
+                        indicator.width = bar_base.hoveredWidth;
                     }
 
                     onExited: {
-                        indicator.width = parent.width * 0.25;
+                        indicator.width = workspaceButton.modelData.focused ? bar_base.focusedWidth : bar_base.idleWidth;
                     }
 
                     onClicked: {
