@@ -34,7 +34,7 @@ Rectangle {
             delegate: Rectangle {
                 id: workspaceButton
 
-                width: bar_base.width / Hyprland.workspaces.values.length
+                width: ((bar_base.width - cwLabel.width) / Hyprland.workspaces.values.length)
                 height: bar_base.height
 
                 color: "transparent"
@@ -81,6 +81,17 @@ Rectangle {
                         workspaceButton.modelData.activate();
                     }
                 }
+            }
+        }
+
+        Rectangle {
+            id: cwLabel
+
+            implicitWidth: 50
+            implicitHeight: parent.height
+
+            Text {
+                text: Hyprland.focusedWorkspace.id
             }
         }
     }
