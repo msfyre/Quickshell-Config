@@ -18,9 +18,13 @@ Rectangle {
         }
     }
 
-    property double idleWidth: parent.width * 0.1
-    property double hoveredWidth: parent.width * 0.35
-    property double focusedWidth: parent.width * 0.3
+    property double idleWidthMult: 0.1
+    property double hoveredWidthMult: 0.25
+    property double focusedWidthMult: 0.2
+
+    property string fontFamily: "monospace"
+
+    property double indicatorDiameter: height
 
     Row {
         anchors.fill: parent
@@ -35,16 +39,17 @@ Rectangle {
                 id: workspaceButton
 
                 width: ((bar_base.width - cwLabel.width) / Hyprland.workspaces.values.length)
-                height: bar_base.height
+                height: Math.max(bar_base.height, bar_base.indicatorDiameter)
 
                 color: "transparent"
 
-                required property var modelData // workspace
+                // This stores the workspace data!!!
+                required property var modelData
 
                 Rectangle {
                     id: indicator
 
-                    width: workspaceButton.modelData.focused ? bar_base.focusedWidth : bar_base.idleWidth
+                    width: workspaceButton.modelData.focused ? Math.max(parent.width * bar_base.focusedWidthMult, bar_base.indicatorDiameter) : Math.max(parent.width * bar_base.idleWidthMult, bar_base.indicatorDiameter)
                     height: parent.height
 
                     anchors.centerIn: parent
@@ -70,11 +75,11 @@ Rectangle {
                     hoverEnabled: true
 
                     onEntered: {
-                        indicator.width = bar_base.hoveredWidth;
+                        indicator.width = Math.max(parent.width * bar_base.hoveredWidthMult, bar_base.indicatorDiameter);
                     }
 
                     onExited: {
-                        indicator.width = workspaceButton.modelData.focused ? bar_base.focusedWidth : bar_base.idleWidth;
+                        indicator.width = workspaceButton.modelData.focused ? Math.max(parent.width * bar_base.focusedWidthMult, bar_base.indicatorDiameter) : Math.max(parent.width * bar_base.idleWidthMult, bar_base.indicatorDiameter);
                     }
 
                     onClicked: {
@@ -87,11 +92,25 @@ Rectangle {
         Rectangle {
             id: cwLabel
 
-            implicitWidth: 50
+            implicitWidth: cwText.implicitWidth * 1.5
             implicitHeight: parent.height
 
+            radius: bar_base.radius / Math.E
+
+            color: "#A0000000"
+
             Text {
-                text: Hyprland.focusedWorkspace.id
+                id: cwText
+
+                font.family: bar_base.fontFamily
+                font.weight: 600
+                font.pixelSize: bar_base.height * 0.8
+
+                color: "white"
+
+                anchors.centerIn: parent
+
+                text: (typeof (Number.parseInt(Hyprland.focusedWorkspace.name))) == "number" ? "WORKSPACE " + Hyprland.focusedWorkspace.name : Hyprland.focusedWorkspace.name
             }
         }
     }

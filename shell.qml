@@ -16,10 +16,6 @@ Singleton {
         path: Qt.resolvedUrl("./color-scheme.json")
         watchChanges: true
         onFileChanged: reload()
-
-        adapter: JsonAdapter {
-            id: jsonAdapter
-        }
     }
 
     Top {
@@ -29,7 +25,7 @@ Singleton {
 
         elementHeight: 10
         elementRadius: 5
-        elementColor: "#121318"
+        elementColor: "#00093f"
 
         color: colorSchemeJSON.data.palettes.primary["5"]
     }
