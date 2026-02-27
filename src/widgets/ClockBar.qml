@@ -11,8 +11,8 @@ Rectangle {
     SystemClock {
         id: clock
 
-        property string timeFormat: Qt.formatTime(clock.date, "hh:mm:ss A")
-        property string dateFormat: Qt.formatDate(clock.date, "MM/dd/yyyy")
+        property string timeFormat: Qt.formatTime(date, "hh:mm:ss A")
+        property string dateFormat: Qt.formatDate(date, "MM/dd/yyyy")
     }
 
     Text {
@@ -49,7 +49,7 @@ Rectangle {
     }
 
     Timer {
-        interval: 1000
+        interval: 0
         running: true
         repeat: true
 

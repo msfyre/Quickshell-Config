@@ -7,7 +7,11 @@ import "./widgets"
 PanelWindow {
     id: base
 
-    property string elementColor
+    property string baseColor
+
+    property string elementIdleColor: "transparent"
+    property string elementHoverColor: "transparent"
+
     property double elementRadius
     property double elementHeight: 12
     property double elementMargins: elementRadius
@@ -31,7 +35,7 @@ PanelWindow {
 
             Layout.leftMargin: 10
 
-            color: base.elementColor
+            color: base.baseColor
             radius: base.elementRadius
 
             RowLayout {
@@ -41,6 +45,15 @@ PanelWindow {
                 HyprlandBar {
                     Layout.fillWidth: true
                     implicitHeight: base.elementHeight
+
+                    idleColor: base.elementIdleColor
+                    hoverColor: base.elementHoverColor
+
+                    idleWidthMult: 0.05
+                    focusedWidthMult: 0.1
+                    hoveredWidthMult: 0.2
+
+                    indicatorDiameter: 7.5
 
                     radius: base.elementRadius
                 }
@@ -53,7 +66,7 @@ PanelWindow {
             implicitWidth: 250
             implicitHeight: base.height
 
-            color: base.elementColor
+            color: base.baseColor
             radius: base.elementRadius
 
             RowLayout {
@@ -77,8 +90,33 @@ PanelWindow {
 
             Layout.rightMargin: 10
 
-            color: base.elementColor
+            color: base.baseColor
             radius: base.elementRadius
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.margins: base.elementMargins
+
+                Wifi {
+                    Layout.fillWidth: true
+                    implicitHeight: base.elementHeight
+
+                    idleColor: base.elementIdleColor
+                    hoverColor: base.elementHoverColor
+
+                    radius: base.elementRadius / Math.E
+                }
+
+                Notifications {
+                    Layout.fillWidth: true
+                    implicitHeight: base.elementHeight
+
+                    idleColor: base.elementIdleColor
+                    hoverColor: base.elementHoverColor
+
+                    radius: base.elementRadius / Math.E
+                }
+            }
         }
     }
 }

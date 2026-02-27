@@ -25,8 +25,10 @@ Singleton {
 
         elementHeight: 10
         elementRadius: 5
-        elementColor: "#00093f"
 
-        color: colorSchemeJSON.data.palettes.primary["5"]
+        baseColor: "#00093f"
+
+        elementIdleColor: "transparent"
+        elementHoverColor: "#10FFFFFF"
     }
 }
