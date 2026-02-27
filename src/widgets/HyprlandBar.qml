@@ -111,7 +111,7 @@ Rectangle {
 
                 anchors.centerIn: parent
 
-                text: (typeof (Number.parseInt(Hyprland.focusedWorkspace.name))) == "number" ? "Workspace " + Hyprland.focusedWorkspace.name : Hyprland.focusedWorkspace.name
+                text: (typeof (Number.parseInt(Hyprland.focusedWorkspace.name))) == "number" ? "WORKSPACE " + Hyprland.focusedWorkspace.name : Hyprland.focusedWorkspace.name
             }
         }
     }

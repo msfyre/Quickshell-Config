@@ -36,11 +36,15 @@ PanelWindow {
             Layout.leftMargin: 10
 
             color: base.baseColor
-            radius: base.elementRadius
+
+            bottomLeftRadius: base.elementRadius
+            bottomRightRadius: base.elementRadius
 
             RowLayout {
                 anchors.fill: parent
                 anchors.margins: base.elementMargins
+
+                Layout.alignment: Qt.AlignVCenter
 
                 HyprlandBar {
                     Layout.fillWidth: true
@@ -56,6 +60,8 @@ PanelWindow {
                     indicatorDiameter: 7.5
 
                     radius: base.elementRadius
+
+                    fontFamily: "JetBrainsMono Nerd Font"
                 }
             }
         }
@@ -67,11 +73,14 @@ PanelWindow {
             implicitHeight: base.height
 
             color: base.baseColor
-            radius: base.elementRadius
+            bottomLeftRadius: base.elementRadius
+            bottomRightRadius: base.elementRadius
 
             RowLayout {
                 anchors.fill: parent
                 anchors.margins: base.elementMargins
+
+                Layout.alignment: Qt.AlignVCenter
 
                 ClockBar {
                     Layout.fillWidth: true
@@ -91,30 +100,53 @@ PanelWindow {
             Layout.rightMargin: 10
 
             color: base.baseColor
-            radius: base.elementRadius
 
-            RowLayout {
+            bottomLeftRadius: base.elementRadius
+            bottomRightRadius: base.elementRadius
+
+            Row {
                 anchors.fill: parent
                 anchors.margins: base.elementMargins
 
-                Wifi {
-                    Layout.fillWidth: true
-                    implicitHeight: base.elementHeight
+                spacing: 0
+
+                AudioMixer {
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    implicitHeight: base.elementHeight * 1.25
 
                     idleColor: base.elementIdleColor
                     hoverColor: base.elementHoverColor
 
                     radius: base.elementRadius / Math.E
+
+                    fontFamily: "JetBrainsMono Nerd Font"
+                }
+
+                Wifi {
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    implicitHeight: base.elementHeight * 1.25
+
+                    idleColor: base.elementIdleColor
+                    hoverColor: base.elementHoverColor
+
+                    radius: base.elementRadius / Math.E
+
+                    fontFamily: "JetBrainsMono Nerd Font"
                 }
 
                 Notifications {
-                    Layout.fillWidth: true
-                    implicitHeight: base.elementHeight
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    implicitHeight: base.elementHeight * 1.25
 
                     idleColor: base.elementIdleColor
                     hoverColor: base.elementHoverColor
 
                     radius: base.elementRadius / Math.E
+
+                    fontFamily: "JetBrainsMono Nerd Font"
                 }
             }
         }

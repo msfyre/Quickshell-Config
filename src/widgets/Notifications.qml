@@ -12,6 +12,8 @@ Rectangle {
 
     color: "transparent"
 
+    implicitWidth: label.implicitWidth * 1.5
+
     Process {
         id: notifMenuProcess
 
@@ -20,12 +22,14 @@ Rectangle {
     }
 
     Text {
+        id: label
+
         text: "Notifications"
 
         anchors.centerIn: parent
 
         font.family: bar_base.fontFamily
-        font.pixelSize: bar_base.height * 0.8
+        font.pixelSize: bar_base.height * 0.75
 
         color: "white"
     }
