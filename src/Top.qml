@@ -46,6 +46,14 @@ PanelWindow {
 
                 Layout.alignment: Qt.AlignVCenter
 
+                User {
+                    implicitHeight: base.elementHeight
+
+                    radius: base.elementRadius
+
+                    fontFamily: "JetBrainsMono Nerd Font"
+                }
+
                 HyprlandBar {
                     Layout.fillWidth: true
                     implicitHeight: base.elementHeight
@@ -108,11 +116,12 @@ PanelWindow {
                 anchors.fill: parent
                 anchors.margins: base.elementMargins
 
+                Layout.alignment: Qt.AlignRight
+
                 spacing: 0
 
                 AudioMixer {
-                    anchors.verticalCenter: parent.verticalCenter
-
+                    Layout.fillWidth: true
                     implicitHeight: base.elementHeight * 1.25
 
                     idleColor: base.elementIdleColor
@@ -124,8 +133,7 @@ PanelWindow {
                 }
 
                 Wifi {
-                    anchors.verticalCenter: parent.verticalCenter
-
+                    Layout.fillWidth: true
                     implicitHeight: base.elementHeight * 1.25
 
                     idleColor: base.elementIdleColor
@@ -137,8 +145,7 @@ PanelWindow {
                 }
 
                 Notifications {
-                    anchors.verticalCenter: parent.verticalCenter
-
+                    Layout.fillWidth: true
                     implicitHeight: base.elementHeight * 1.25
 
                     idleColor: base.elementIdleColor
