@@ -40,6 +40,12 @@ PanelWindow {
             bottomLeftRadius: base.elementRadius
             bottomRightRadius: base.elementRadius
 
+            Behavior on color {
+                ColorAnimation {
+                    duration: 1000
+                }
+            }
+
             RowLayout {
                 anchors.fill: parent
                 anchors.margins: base.elementMargins
@@ -84,6 +90,12 @@ PanelWindow {
             bottomLeftRadius: base.elementRadius
             bottomRightRadius: base.elementRadius
 
+            Behavior on color {
+                ColorAnimation {
+                    duration: 1000
+                }
+            }
+
             RowLayout {
                 anchors.fill: parent
                 anchors.margins: base.elementMargins
@@ -112,6 +124,12 @@ PanelWindow {
             bottomLeftRadius: base.elementRadius
             bottomRightRadius: base.elementRadius
 
+            Behavior on color {
+                ColorAnimation {
+                    duration: 1000
+                }
+            }
+
             Row {
                 anchors.fill: parent
                 anchors.margins: base.elementMargins
@@ -130,6 +148,8 @@ PanelWindow {
                     radius: base.elementRadius / Math.E
 
                     fontFamily: "JetBrainsMono Nerd Font"
+
+                    anchors.verticalCenter: parent.verticalCenter
                 }
 
                 Wifi {
@@ -142,6 +162,7 @@ PanelWindow {
                     radius: base.elementRadius / Math.E
 
                     fontFamily: "JetBrainsMono Nerd Font"
+                    anchors.verticalCenter: parent.verticalCenter
                 }
 
                 Notifications {
@@ -154,6 +175,7 @@ PanelWindow {
                     radius: base.elementRadius / Math.E
 
                     fontFamily: "JetBrainsMono Nerd Font"
+                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
         }
