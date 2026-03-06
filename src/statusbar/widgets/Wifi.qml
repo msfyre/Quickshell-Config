@@ -12,7 +12,7 @@ Rectangle {
 
     color: "transparent"
 
-    implicitWidth: label.implicitWidth * 1.5
+    implicitWidth: label.implicitWidth * 2
 
     Process {
         id: wifiMenuProcess
@@ -24,12 +24,12 @@ Rectangle {
     Text {
         id: label
 
-        text: "Internet"
+        text: ""
 
         anchors.centerIn: parent
 
         font.family: bar_base.fontFamily
-        font.pixelSize: bar_base.height * 0.75
+        font.pixelSize: bar_base.height * 0.8
 
         color: "white"
     }
