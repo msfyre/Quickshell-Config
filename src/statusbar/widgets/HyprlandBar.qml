@@ -29,7 +29,7 @@ Rectangle {
 
         spacing: 5
 
-        move: Transition {
+        add: Transition {
             PropertyAnimation {
                 properties: "x, width"
                 easing.type: Easing.OutSine
@@ -56,7 +56,7 @@ Rectangle {
                 required property var modelData
 
                 Rectangle {
-                    id: indicator
+                    id: workspaceIndicator
 
                     width: workspaceButton.modelData.focused ? Math.max(parent.width * bar_base.focusedWidthMult, bar_base.indicatorDiameter) : Math.max(parent.width * bar_base.idleWidthMult, bar_base.indicatorDiameter)
                     height: Math.min(bar_base.height / 2, bar_base.indicatorDiameter)
@@ -73,18 +73,21 @@ Rectangle {
 
                     Behavior on width {
                         NumberAnimation {
-                            duration: 200
+                            duration: 250
                             easing.type: Easing.InOutQuad
                         }
                     }
                 }
+
                 Rectangle {
                     id: monitorIndicator
 
-                    color: "#C0000000"
+                    color: "#E0000000"
 
-                    anchors.fill: parent
-                    anchors.verticalCenter: parent.verticalCenter
+                    width: Math.max(workspaceIndicator.width * 1.2, monitorNameText.implicitWidth * 1.2)
+                    height: parent.height
+
+                    anchors.centerIn: parent
 
                     radius: bar_base.radius / Math.E
 
@@ -92,13 +95,13 @@ Rectangle {
 
                     Behavior on opacity {
                         NumberAnimation {
-                            duration: 100
+                            duration: 250
                         }
                     }
 
                     Text {
                         id: monitorNameText
-                        text: workspaceButton.modelData.monitor.name
+                        text: "MONITOR " + (workspaceButton.modelData.monitor.id + 1)
 
                         color: "white"
 
@@ -115,15 +118,13 @@ Rectangle {
                     hoverEnabled: true
 
                     onEntered: {
-                        indicator.width = Math.max(parent.width * bar_base.hoveredWidthMult, bar_base.indicatorDiameter);
-                        indicator.opacity = 0;
+                        workspaceIndicator.width = Math.max(parent.width * bar_base.hoveredWidthMult, bar_base.indicatorDiameter);
                         monitorIndicator.opacity = 1;
                         workspaceButton.color = bar_base.hoverColor;
                     }
 
                     onExited: {
-                        indicator.width = workspaceButton.modelData.focused ? Math.max(parent.width * bar_base.focusedWidthMult, bar_base.indicatorDiameter) : Math.max(parent.width * bar_base.idleWidthMult, bar_base.indicatorDiameter);
-                        indicator.opacity = 1;
+                        workspaceIndicator.width = workspaceButton.modelData.focused ? Math.max(parent.width * bar_base.focusedWidthMult, bar_base.indicatorDiameter) : Math.max(parent.width * bar_base.idleWidthMult, bar_base.indicatorDiameter);
                         monitorIndicator.opacity = 0;
                         workspaceButton.color = bar_base.idleColor;
                     }
