@@ -13,11 +13,14 @@ Rectangle {
     property double focusedWidthMult: 0.2
 
     property string fontFamily: "monospace"
+    property double fontPixelSize: 10
 
     property double indicatorDiameter: height
 
     property string idleColor: "transparent"
     property string hoverColor: "transparent"
+
+    anchors.verticalCenter: parent.verticalCenter
 
     Row {
         id: bar_row
@@ -105,7 +108,7 @@ Rectangle {
                 id: cwText
 
                 font.family: bar_base.fontFamily
-                font.pixelSize: bar_base.height * 0.9
+                font.pixelSize: bar_base.fontPixelSize // FIXME: This is being overriden by something else
 
                 color: "white"
 

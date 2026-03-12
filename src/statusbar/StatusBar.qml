@@ -16,13 +16,25 @@ PanelWindow {
     property double elementHeight: 12
     property double elementMargins: elementRadius
 
+    property string elementFontFamily: "monospace"
+    property double elementFontPixelSize: 10
+
     implicitWidth: Screen.width
+    implicitHeight: 0
 
     anchors.top: true
 
     color: "transparent"
 
+    Behavior on implicitHeight {
+        NumberAnimation {
+            duration: 250
+        }
+    }
+
     RowLayout {
+        id: statusRow
+
         anchors.fill: parent
 
         spacing: 5
@@ -33,7 +45,7 @@ PanelWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            Layout.leftMargin: 10
+            Layout.leftMargin: statusRow.spacing * 2
 
             color: base.baseColor
 
@@ -57,11 +69,13 @@ PanelWindow {
 
                     radius: base.elementRadius
 
-                    fontFamily: "JetBrainsMono Nerd Font"
+                    fontFamily: base.elementFontFamily
+                    fontPixelSize: base.elementFontPixelSize
                 }
 
                 HyprlandBar {
                     Layout.fillWidth: true
+
                     implicitHeight: base.elementHeight
 
                     idleColor: base.elementIdleColor
@@ -75,7 +89,8 @@ PanelWindow {
 
                     radius: base.elementRadius
 
-                    fontFamily: "JetBrainsMono Nerd Font"
+                    fontFamily: base.elementFontFamily
+                    fontPixelSize: base.elementFontPixelSize
                 }
             }
         }
@@ -106,7 +121,7 @@ PanelWindow {
                     Layout.fillWidth: true
                     implicitHeight: base.elementHeight
 
-                    fontFamily: "JetBrainsMono Nerd Font"
+                    fontFamily: base.elementFontFamily
                 }
             }
         }
@@ -117,7 +132,7 @@ PanelWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            Layout.rightMargin: 10
+            Layout.rightMargin: statusRow.spacing * 2
 
             color: base.baseColor
 
@@ -147,7 +162,7 @@ PanelWindow {
 
                     radius: base.elementRadius / Math.E
 
-                    fontFamily: "JetBrainsMono Nerd Font"
+                    fontFamily: base.elementFontFamily
 
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -161,7 +176,7 @@ PanelWindow {
 
                     radius: base.elementRadius / Math.E
 
-                    fontFamily: "JetBrainsMono Nerd Font"
+                    fontFamily: base.elementFontFamily
                     anchors.verticalCenter: parent.verticalCenter
                 }
 
@@ -174,7 +189,7 @@ PanelWindow {
 
                     radius: base.elementRadius / Math.E
 
-                    fontFamily: "JetBrainsMono Nerd Font"
+                    fontFamily: base.elementFontFamily
                     anchors.verticalCenter: parent.verticalCenter
                 }
             }

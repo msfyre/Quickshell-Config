@@ -5,8 +5,11 @@ Rectangle {
     id: bar_base
 
     property string fontFamily: "monospace"
+    property double fontPixelSize: 10
 
     color: "transparent"
+
+    anchors.verticalCenter: parent.verticalCenter
 
     SystemClock {
         id: clock
@@ -26,7 +29,7 @@ Rectangle {
 
         font {
             family: bar_base.fontFamily
-            pixelSize: bar_base.height
+            pixelSize: bar_base.fontPixelSize
         }
 
         text: isShowingDate ? clock.dateFormat : clock.timeFormat
