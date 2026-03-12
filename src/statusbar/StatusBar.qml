@@ -82,8 +82,8 @@ PanelWindow {
                     hoverColor: base.elementHoverColor
 
                     idleWidthMult: 0.05
-                    focusedWidthMult: 0.1
-                    hoveredWidthMult: 0.2
+                    focusedWidthMult: 0.2
+                    hoveredWidthMult: 0.25
 
                     indicatorDiameter: 7.5
 
