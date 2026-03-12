@@ -4,7 +4,7 @@ import Quickshell.Io
 Rectangle {
     id: bar_base
 
-    implicitWidth: displayText.implicitWidth * 1.5
+    implicitWidth: displayText.implicitWidth * 1.2
 
     anchors {
         verticalCenter: parent.verticalCenter
