@@ -13,6 +13,7 @@ Singleton {
     ColorSchemeGenerator {
         id: schemeGenerator
 
+        isDarkMode: false
         imageFilePath: wallpaperWrapper.currentWallpaper
 
         onJsonAdapterChanged: {
@@ -32,9 +33,9 @@ Singleton {
         elementHeight: (implicitHeight / 2) * 0.9
         elementRadius: 4
 
-        baseColor: schemeGenerator.jsonAdapter.palettes.primary[10]
+        baseColor: schemeGenerator.jsonAdapter.palettes.primary[10].color
         elementIdleColor: "transparent"
-        elementHoverColor: schemeGenerator.jsonAdapter.palettes.primary[20]
+        elementHoverColor: schemeGenerator.jsonAdapter.palettes.primary[20].color
         elementFontFamily: "JetBrainsMono Nerd Font"
         elementFontPixelSize: 9
     }
