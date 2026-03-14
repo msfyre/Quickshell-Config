@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
 
 Rectangle {
@@ -9,7 +10,7 @@ Rectangle {
 
     color: "transparent"
 
-    anchors.verticalCenter: parent.verticalCenter
+    Layout.alignment: Qt.AlignVCenter
 
     SystemClock {
         id: clock

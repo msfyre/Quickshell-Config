@@ -7,7 +7,7 @@ import "./widgets"
 PanelWindow {
     id: base
 
-    property string baseColor
+    property string baseColor: "black"
 
     property string elementIdleColor: "transparent"
     property string elementHoverColor: "transparent"
@@ -18,6 +18,7 @@ PanelWindow {
 
     property string elementFontFamily: "monospace"
     property double elementFontPixelSize: 10
+    property string elementTextColor: "white"
 
     implicitWidth: Screen.width
     implicitHeight: 0
@@ -71,6 +72,21 @@ PanelWindow {
 
                     fontFamily: base.elementFontFamily
                     fontPixelSize: base.elementFontPixelSize
+                }
+
+                Launcher {
+                    implicitHeight: base.elementHeight
+
+                    launcherName: "rofi"
+
+                    fontFamily: base.elementFontFamily
+                    fontPixelSize: base.elementFontPixelSize
+                    textColor: base.elementTextColor
+
+                    idleColor: base.elementIdleColor
+                    hoverColor: base.elementHoverColor
+
+                    radius: base.elementRadius
                 }
 
                 HyprlandBar {
@@ -145,7 +161,7 @@ PanelWindow {
                 }
             }
 
-            Row {
+            RowLayout {
                 anchors.fill: parent
                 anchors.margins: base.elementMargins
 
@@ -153,8 +169,19 @@ PanelWindow {
 
                 spacing: 0
 
-                AudioMixer {
+                Music {
                     Layout.fillWidth: true
+                    implicitHeight: base.elementHeight * 1.25
+
+                    radius: base.elementRadius / Math.E
+
+                    color: "#A0000000"
+
+                    fontFamily: base.elementFontFamily
+                    fontPixelSize: base.elementFontPixelSize
+                }
+
+                AudioMixer {
                     implicitHeight: base.elementHeight * 1.25
 
                     idleColor: base.elementIdleColor
@@ -163,12 +190,10 @@ PanelWindow {
                     radius: base.elementRadius / Math.E
 
                     fontFamily: base.elementFontFamily
-
-                    anchors.verticalCenter: parent.verticalCenter
+                    fontPixelSize: base.elementFontPixelSize
                 }
 
                 Wifi {
-                    Layout.fillWidth: true
                     implicitHeight: base.elementHeight * 1.25
 
                     idleColor: base.elementIdleColor
@@ -177,11 +202,10 @@ PanelWindow {
                     radius: base.elementRadius / Math.E
 
                     fontFamily: base.elementFontFamily
-                    anchors.verticalCenter: parent.verticalCenter
+                    fontPixelSize: base.elementFontPixelSize
                 }
 
                 Notifications {
-                    Layout.fillWidth: true
                     implicitHeight: base.elementHeight * 1.25
 
                     idleColor: base.elementIdleColor
@@ -190,7 +214,7 @@ PanelWindow {
                     radius: base.elementRadius / Math.E
 
                     fontFamily: base.elementFontFamily
-                    anchors.verticalCenter: parent.verticalCenter
+                    fontPixelSize: base.elementFontPixelSize
                 }
             }
         }
