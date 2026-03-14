@@ -6,11 +6,12 @@ Rectangle {
     id: bar_base
 
     property string fontFamily: "monospace"
+    property double fontPixelSize: 10
 
     property string idleColor: "transparent"
     property string hoverColor
 
-    color: "transparent"
+    color: idleColor
 
     implicitWidth: label.implicitWidth * 2
 
@@ -29,7 +30,7 @@ Rectangle {
         anchors.centerIn: parent
 
         font.family: bar_base.fontFamily
-        font.pixelSize: bar_base.height * 0.8
+        font.pixelSize: bar_base.fontPixelSize
 
         color: "white"
     }
