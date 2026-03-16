@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 
+import "./widgets/" as StatusBarWidgets
 import "./widgets/hyprland/" as HyprlandBar
 
 PanelWindow {
@@ -65,6 +66,15 @@ PanelWindow {
 
                 Layout.alignment: Qt.AlignVCenter
 
+                StatusBarWidgets.User {
+                    implicitHeight: base.elementHeight
+
+                    radius: base.elementRadius
+
+                    fontFamily: base.elementFontFamily
+                    fontPixelSize: base.elementFontPixelSize
+                }
+
                 HyprlandBar.Base {
                     Layout.fillWidth: true
 
@@ -108,6 +118,14 @@ PanelWindow {
                 anchors.margins: base.elementMargins
 
                 Layout.alignment: Qt.AlignVCenter
+
+                StatusBarWidgets.Clock {
+                    Layout.fillWidth: true
+                    implicitHeight: base.elementHeight
+
+                    fontFamily: base.elementFontFamily
+                    fontPixelSize: base.elementFontPixelSize
+                }
             }
         }
 

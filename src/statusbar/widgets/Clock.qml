@@ -2,21 +2,22 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 
-Rectangle {
+Item {
     id: bar_base
 
     property string fontFamily: "monospace"
     property double fontPixelSize: 10
 
-    color: "transparent"
+    readonly property string timeFormatString: "<| hh | mm | ss | A |>"
+    readonly property string dateFormatString: "<| MM | dd | yyyy |>"
 
     Layout.alignment: Qt.AlignVCenter
 
     SystemClock {
         id: clock
 
-        property string timeFormat: Qt.formatTime(date, "hh:mm:ss A")
-        property string dateFormat: Qt.formatDate(date, "MM/dd/yyyy")
+        property string timeFormat: Qt.formatTime(date, bar_base.timeFormatString)
+        property string dateFormat: Qt.formatDate(date, bar_base.dateFormatString)
     }
 
     Text {
@@ -58,7 +59,7 @@ Rectangle {
         repeat: true
 
         onTriggered: {
-            output.text = output.isShowingDate ? Qt.formatDate(clock.date, "MM/dd/yyyy") : Qt.formatTime(clock.date, "hh:mm:ss A");
+            output.text = output.isShowingDate ? Qt.formatDate(clock.date, bar_base.dateFormatString) : Qt.formatTime(clock.date, bar_base.timeFormatString);
         }
     }
 }
