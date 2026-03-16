@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 
-import "./widgets"
+import "./widgets/hyprland/" as HyprlandBar
 
 PanelWindow {
     id: base
@@ -65,31 +65,7 @@ PanelWindow {
 
                 Layout.alignment: Qt.AlignVCenter
 
-                User {
-                    implicitHeight: base.elementHeight
-
-                    radius: base.elementRadius
-
-                    fontFamily: base.elementFontFamily
-                    fontPixelSize: base.elementFontPixelSize
-                }
-
-                Launcher {
-                    implicitHeight: base.elementHeight
-
-                    launcherName: "rofi"
-
-                    fontFamily: base.elementFontFamily
-                    fontPixelSize: base.elementFontPixelSize
-                    textColor: base.elementTextColor
-
-                    idleColor: base.elementIdleColor
-                    hoverColor: base.elementHoverColor
-
-                    radius: base.elementRadius
-                }
-
-                HyprlandBar {
+                HyprlandBar.Base {
                     Layout.fillWidth: true
 
                     implicitHeight: base.elementHeight
@@ -132,13 +108,6 @@ PanelWindow {
                 anchors.margins: base.elementMargins
 
                 Layout.alignment: Qt.AlignVCenter
-
-                ClockBar {
-                    Layout.fillWidth: true
-                    implicitHeight: base.elementHeight
-
-                    fontFamily: base.elementFontFamily
-                }
             }
         }
 
@@ -168,54 +137,6 @@ PanelWindow {
                 Layout.alignment: Qt.AlignRight
 
                 spacing: 0
-
-                Music {
-                    Layout.fillWidth: true
-                    implicitHeight: base.elementHeight * 1.25
-
-                    radius: base.elementRadius / Math.E
-
-                    color: "#A0000000"
-
-                    fontFamily: base.elementFontFamily
-                    fontPixelSize: base.elementFontPixelSize
-                }
-
-                AudioMixer {
-                    implicitHeight: base.elementHeight * 1.25
-
-                    idleColor: base.elementIdleColor
-                    hoverColor: base.elementHoverColor
-
-                    radius: base.elementRadius / Math.E
-
-                    fontFamily: base.elementFontFamily
-                    fontPixelSize: base.elementFontPixelSize
-                }
-
-                Wifi {
-                    implicitHeight: base.elementHeight * 1.25
-
-                    idleColor: base.elementIdleColor
-                    hoverColor: base.elementHoverColor
-
-                    radius: base.elementRadius / Math.E
-
-                    fontFamily: base.elementFontFamily
-                    fontPixelSize: base.elementFontPixelSize
-                }
-
-                Notifications {
-                    implicitHeight: base.elementHeight * 1.25
-
-                    idleColor: base.elementIdleColor
-                    hoverColor: base.elementHoverColor
-
-                    radius: base.elementRadius / Math.E
-
-                    fontFamily: base.elementFontFamily
-                    fontPixelSize: base.elementFontPixelSize
-                }
             }
         }
     }
