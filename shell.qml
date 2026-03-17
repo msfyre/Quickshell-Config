@@ -3,40 +3,17 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 
-import "./src/statusbar/"
-import "./src/utilities/"
-import "./src/wrappers"
+import "./utilities/" as Utilities
 
-Singleton {
-    id: root
-
-    ColorSchemeGenerator {
+ShellRoot {
+    Utilities.ColorSchemeGenerator {
         id: schemeGenerator
-
-        isDarkMode: false
-        imageFilePath: wallpaperWrapper.currentWallpaper
-
-        onJsonAdapterChanged: {
-            console.log("Adapter updated!");
-        }
+        isDarkMode: true
+        baseColor: "#000000"
     }
 
-    SWWW {
-        id: wallpaperWrapper
-    }
-
-    StatusBar {
-        id: statusbar
-
-        implicitHeight: 25
-
-        elementHeight: (implicitHeight / 2) * 0.9
-        elementRadius: 4
-
-        baseColor: schemeGenerator.jsonAdapter.palettes.primary[10].color
-        elementIdleColor: "transparent"
-        elementHoverColor: schemeGenerator.jsonAdapter.palettes.primary[20].color
-        elementFontFamily: "JetBrainsMono Nerd Font"
-        elementFontPixelSize: 9
+    BG {
+        color: schemeGenerator.isDarkMode ? schemeGenerator.jsonAdapter.palettes.neutral[5].color : schemeGenerator.jsonAdapter.palettes.neutral[90].color
+        componentFontFace: "JetBrainsMono Nerd Font"
     }
 }

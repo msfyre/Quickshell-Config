@@ -8,6 +8,7 @@ Item {
 
     property bool isDarkMode: true
     property string imageFilePath
+    property string baseColor
 
     property var jsonAdapter
 
@@ -41,14 +42,19 @@ Item {
 
         console.log("Path:", utilRoot.imageFilePath);
 
-        schemeGenerator.command = ["sh", "-c", "matugen image -t scheme-tonal-spot -j hex --source-color-index 0 " + (isDarkMode ? "-m dark '" : "-m light '") + utilRoot.imageFilePath + "' > ~/.config/quickshell/.colorscheme.json"];
+        if (imageFilePath != null) {
+            schemeGenerator.command = ["sh", "-c", "matugen image -t scheme-tonal-spot -j hex --source-color-index 0 " + (isDarkMode ? "-m dark '" : "-m light '") + utilRoot.imageFilePath + "' > ~/.config/quickshell/.colorscheme.json"];
+        } else if (baseColor != null) {
+            schemeGenerator.command = ["sh", "-c", "matugen color -t scheme-tonal-spot -j hex --source-color-index 0 " + (isDarkMode ? "-m dark '" : "-m light '") + utilRoot.baseColor + "' > ~/.config/quickshell/.colorscheme.json"];
+        }
+
         schemeGenerator.running = true;
     }
 
     FileView {
         id: schemeFileView
 
-        path: Qt.resolvedUrl("../../.colorscheme.json")
+        path: Qt.resolvedUrl("../.colorscheme.json")
 
         blockLoading: true
 
