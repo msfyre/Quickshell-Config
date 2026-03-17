@@ -9,6 +9,7 @@ PanelWindow {
     id: root
 
     WlrLayershell.layer: WlrLayer.Background
+    WlrLayershell.exclusiveZone: -1 // do not get shoved by other quickshell widgets
 
     property string imageFilePath
     property string componentFontFace: "monospace"
@@ -28,7 +29,7 @@ PanelWindow {
         anchors.fill: parent
         source: resolver.expandPath(root.imageFilePath)
 
-        fillMode: Image.PreserveAspectCrop
+        fillMode: Image.PreserveAspectFit
     }
 
     Behavior on imageFilePath {
