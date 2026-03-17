@@ -3,13 +3,14 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 
-import "./components/" as Components
+import "utilities" as Utilities
 
 PanelWindow {
-    id: base
+    id: root
 
     WlrLayershell.layer: WlrLayer.Background
 
+    property string imageFilePath
     property string componentFontFace: "monospace"
 
     implicitWidth: screen.width
@@ -17,12 +18,26 @@ PanelWindow {
 
     color: "#000000"
 
-    Components.Clock {
-        anchors.centerIn: parent
+    Utilities.FileResolver {
+        id: resolver
+    }
 
-        textColor: "white"
+    Image {
+        id: bgImage
 
-        fontFamily: base.componentFontFace
-        fontPixelSize: 40
+        anchors.fill: parent
+        source: resolver.expandPath(root.imageFilePath)
+
+        fillMode: Image.PreserveAspectCrop
+    }
+
+    Behavior on imageFilePath {
+        PropertyAnimation {
+            target: bgImage
+            from: 1
+            to: 0
+            property: "opacity"
+            duration: 5000
+        }
     }
 }
