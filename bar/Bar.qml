@@ -43,8 +43,8 @@ PanelWindow {
             implicitHeight: left.height
             color: root.leftColor
 
-            topRightRadius: width / 2
-            bottomRightRadius: width / 2
+            topRightRadius: height / 8
+            bottomRightRadius: height / 8
 
             Behavior on implicitWidth {
                 NumberAnimation {

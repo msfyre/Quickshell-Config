@@ -39,7 +39,7 @@ Item {
 
         Text {
             Layout.alignment: Qt.AlignVCenter
-            text: "M" + (Hyprland.focusedWorkspace.monitor.id + 1) + "/" + "W" + Hyprland.focusedWorkspace.id
+            text: "M" + (Hyprland.focusedWorkspace.monitor.id + 1) + ": WORKSPACE " + Hyprland.focusedWorkspace.id
 
             color: root.elementColor
 
@@ -99,7 +99,10 @@ Item {
 
                     onEntered: {
                         hovered = true;
-                        tooltip.text = "WORKSPACE " + workspace.id;
+
+                        if (!workspace.focused) {
+                            tooltip.text = ">> WORKSPACE " + workspace.id;
+                        }
                     }
 
                     onExited: {
@@ -109,6 +112,14 @@ Item {
 
                     onClicked: {
                         workspace.activate();
+                        tooltip.text = "";
+                    }
+
+                    Behavior on implicitWidth {
+                        PropertyAnimation {
+                            easing.type: Easing.InOutSine
+                            duration: 100
+                        }
                     }
                 }
             }
@@ -124,7 +135,7 @@ Item {
             visible: text.length > 0
 
             font.family: root.elementFontFace
-            font.pixelSize: root.elementHeight * 1.2
+            font.pixelSize: root.elementHeight * 1.1
 
             opacity: visible ? 1 : 0
 

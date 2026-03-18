@@ -20,13 +20,13 @@ ShellRoot {
         color: schemeGenerator.jsonAdapter.colors.background.default.color
         componentFontFace: "BigBlueTermPlus Nerd Font"
         componentFontSize: 24
-        componentFontColor: "white"
+        componentFontColor: schemeGenerator.jsonAdapter.colors.primary.default.color
 
         imageFilePath: "~/Pictures/Wallpapers/Misc_MicrowaveArray.jpg"
     }
 
     Bar.Bar {
-        implicitHeight: screen.height * 0.03
+        implicitHeight: screen.height * 0.025
 
         leftColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color
 
