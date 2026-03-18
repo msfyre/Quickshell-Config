@@ -36,16 +36,13 @@ Item {
         console.log("Generating scheme...");
 
         if (utilRoot.imageFilePath.length === 0) {
-            console.error("No path specified!");
-            return;
+            console.warn("No path specified!");
         }
 
         console.log("Path:", utilRoot.imageFilePath);
 
-        if (imageFilePath != null) {
-            schemeGenerator.command = ["sh", "-c", "matugen image -t scheme-tonal-spot -j hex --source-color-index 0 " + (isDarkMode ? "-m dark '" : "-m light '") + utilRoot.imageFilePath + "' > ~/.config/quickshell/.colorscheme.json"];
-        } else if (baseColor != null) {
-            schemeGenerator.command = ["sh", "-c", "matugen color -t scheme-tonal-spot -j hex --source-color-index 0 " + (isDarkMode ? "-m dark '" : "-m light '") + utilRoot.baseColor + "' > ~/.config/quickshell/.colorscheme.json"];
+        if (utilRoot.imageFilePath != null) {
+            schemeGenerator.command = ["sh", "-c", "matugen image -j hex --source-color-index 0 " + (isDarkMode ? "-m dark " : "-m light ") + utilRoot.imageFilePath + " > ~/.config/quickshell/.colorscheme.json"];
         }
 
         schemeGenerator.running = true;
