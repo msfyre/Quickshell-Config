@@ -48,7 +48,19 @@ Item {
                 Rectangle {
                     anchors.fill: parent
 
+                    color: wsItem.workspace.focused ? "white" : "transparent"
+
+                    border.color: "white"
+                    border.width: 2
+
                     radius: width / 2
+
+                    Behavior on color {
+                        PropertyAnimation {
+                            easing: Easing.InOutSine
+                            duration: 100
+                        }
+                    }
                 }
 
                 onClicked: {
