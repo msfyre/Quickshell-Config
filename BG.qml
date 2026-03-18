@@ -1,8 +1,10 @@
 import QtQuick
+import QtQuick.Layouts
 
 import Quickshell
 import Quickshell.Wayland
 
+import "."
 import "utilities" as Utilities
 
 PanelWindow {
@@ -13,6 +15,8 @@ PanelWindow {
 
     property string imageFilePath
     property string componentFontFace: "monospace"
+    property int componentFontSize: 12
+    property color componentFontColor: "white"
 
     implicitWidth: screen.width
     implicitHeight: screen.height
@@ -29,16 +33,19 @@ PanelWindow {
         anchors.fill: parent
         source: resolver.expandPath(root.imageFilePath)
 
-        fillMode: Image.PreserveAspectFit
+        fillMode: Image.PreserveAspectCrop
     }
 
-    Behavior on imageFilePath {
-        PropertyAnimation {
-            target: bgImage
-            from: 1
-            to: 0
-            property: "opacity"
-            duration: 5000
+    Clock {
+        anchors {
+            right: parent.right
+            rightMargin: 10
+            bottom: parent.bottom
+            bottomMargin: 10
         }
+
+        componentFontFace: root.componentFontFace
+        componentFontSize: root.componentFontSize
+        componentFontColor: root.componentFontColor
     }
 }
