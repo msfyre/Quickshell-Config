@@ -57,7 +57,7 @@ Item {
 
                     Behavior on color {
                         PropertyAnimation {
-                            easing: Easing.InOutSine
+                            easing.type: Easing.InOutSine
                             duration: 100
                         }
                     }
@@ -67,15 +67,6 @@ Item {
                     workspace.activate();
                 }
             }
-        }
-
-        Text {
-            anchors.verticalCenter: parent.verticalCenter
-            text: " MONITOR " + (Hyprland.focusedWorkspace.monitor.id + 1)
-            color: "white"
-
-            font.family: root.monitorIndicatorFontFace
-            font.pixelSize: root.monitorIndicatorFontSize
         }
     }
 }

@@ -66,7 +66,7 @@ PanelWindow {
 
             spacing: 10
 
-            User {
+            Monitor {
                 font.family: root.elementFontFace
                 font.pixelSize: root.elementFontSize
 
