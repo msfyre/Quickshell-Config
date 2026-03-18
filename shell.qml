@@ -22,11 +22,11 @@ ShellRoot {
         componentFontSize: 24
         componentFontColor: schemeGenerator.jsonAdapter.colors.primary.default.color
 
-        imageFilePath: "~/Pictures/Wallpapers/Misc_MicrowaveArray.jpg"
+        imageFilePath: "~/Pictures/Wallpapers/LCB_DerFreischutzDomain.png"
     }
 
     Bar.Bar {
-        implicitHeight: screen.height * 0.025
+        implicitHeight: screen.height * 0.0275
 
         leftColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color
 

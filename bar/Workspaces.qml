@@ -7,6 +7,7 @@ import Quickshell.Hyprland
 Item {
     id: root
 
+    readonly property HyprlandWorkspace activeWorkspace: Hyprland.focusedWorkspace
     readonly property Transition moveTransition: Transition {
         NumberAnimation {
             properties: "x, width"
@@ -23,10 +24,15 @@ Item {
     implicitWidth: layout.implicitWidth + layout.spacing
     implicitHeight: layout.implicitHeight
 
+    onActiveWorkspaceChanged: {
+        process_row.trackingWorkspace = root.activeWorkspace;
+        tooltip.text = "";
+    }
+
     RowLayout {
         id: layout
 
-        spacing: 10
+        spacing: 7.5
 
         Text {
             Layout.alignment: Qt.AlignVCenter
@@ -48,9 +54,6 @@ Item {
         }
 
         Row {
-            id: row
-
-            Layout.fillWidth: true
             spacing: 5
 
             add: root.moveTransition
@@ -101,18 +104,24 @@ Item {
                         hovered = true;
 
                         if (!workspace.focused) {
-                            tooltip.text = ">> WORKSPACE " + workspace.id;
+                            tooltip.text = ">> WORKSPACE " + workspace.id + " |";
+                        } else if (root.activeWorkspace.toplevels.values.length > 0) {
+                            tooltip.text = ">> WINDOWS:";
+                        } else {
+                            tooltip.text = "No windows :(";
                         }
+
+                        process_row.trackingWorkspace = workspace;
                     }
 
                     onExited: {
                         hovered = false;
+                        process_row.trackingWorkspace = root.activeWorkspace;
                         tooltip.text = "";
                     }
 
                     onClicked: {
                         workspace.activate();
-                        tooltip.text = "";
                     }
 
                     Behavior on implicitWidth {
@@ -142,6 +151,53 @@ Item {
             Behavior on opacity {
                 NumberAnimation {
                     duration: 250
+                }
+            }
+        }
+
+        Row {
+            id: process_row
+
+            Layout.alignment: Qt.AlignVCenter
+
+            property HyprlandWorkspace trackingWorkspace: root.activeWorkspace
+
+            spacing: 10
+
+            readonly property Transition animation: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 0
+                    to: 1
+                    duration: 250
+                }
+                PropertyAnimation {
+                    property: "x"
+                    duration: 100
+                }
+            }
+
+            add: animation
+
+            // FIXME: This is still outputting the width even though visible is ticked off. (it depends on which window you saved last)
+            // ADDENDUM: This bug doesn't happen if you restarted quickshell
+            // ADDENDUM 2: it never appeared again wtf how
+            // (@msfyre, 3/19/2026)
+            Repeater {
+                model: root.activeWorkspace.toplevels
+
+                Text {
+                    id: processDisplay
+
+                    required property int index
+                    required property var modelData
+                    property HyprlandToplevel toplevel: modelData
+
+                    text: "* [" + (index + 1) + "] " + toplevel.title
+
+                    color: root.elementColor
+                    font.family: root.elementFontFace
+                    font.pixelSize: root.elementHeight * 1.1
                 }
             }
         }
