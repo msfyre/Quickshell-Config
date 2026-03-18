@@ -20,13 +20,13 @@ Item {
     property string elementFontFace: "monospace"
 
     // spacing is multiplied by 2 to account for the margin
-    implicitWidth: rowLayout.implicitWidth + (rowLayout.spacing * 2)
-    implicitHeight: rowLayout.implicitHeight
+    implicitWidth: layout.implicitWidth + layout.spacing
+    implicitHeight: layout.implicitHeight
 
     RowLayout {
-        id: rowLayout
+        id: layout
 
-        anchors.fill: parent
+        spacing: 10
 
         Text {
             Layout.alignment: Qt.AlignVCenter
@@ -39,12 +39,12 @@ Item {
 
         Text {
             Layout.alignment: Qt.AlignVCenter
-            text: "M" + (Hyprland.focusedWorkspace.monitor.id + 1) + "|" + "W" + Hyprland.focusedWorkspace.id
+            text: "M" + (Hyprland.focusedWorkspace.monitor.id + 1) + "/" + "W" + Hyprland.focusedWorkspace.id
 
             color: root.elementColor
 
             font.family: root.elementFontFace
-            font.pixelSize: root.elementHeight
+            font.pixelSize: root.elementHeight * 1.2
         }
 
         Row {
@@ -82,9 +82,9 @@ Item {
 
                         anchors.fill: parent
 
-                        color: wsItem.workspace.focused ? "white" : "transparent"
+                        color: wsItem.workspace.focused ? root.elementColor : "transparent"
 
-                        border.color: "white"
+                        border.color: root.elementColor
                         border.width: 1.5
 
                         radius: 2
@@ -99,15 +99,38 @@ Item {
 
                     onEntered: {
                         hovered = true;
+                        tooltip.text = "WORKSPACE " + workspace.id;
                     }
 
                     onExited: {
                         hovered = false;
+                        tooltip.text = "";
                     }
 
                     onClicked: {
                         workspace.activate();
                     }
+                }
+            }
+        }
+
+        Text {
+            id: tooltip
+
+            Layout.alignment: Qt.AlignVCenter
+
+            text: ""
+            color: root.elementColor
+            visible: text.length > 0
+
+            font.family: root.elementFontFace
+            font.pixelSize: root.elementHeight * 1.2
+
+            opacity: visible ? 1 : 0
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 250
                 }
             }
         }

@@ -17,17 +17,20 @@ ShellRoot {
     BG {
         id: bg
 
-        color: schemeGenerator.isDarkMode ? schemeGenerator.jsonAdapter.palettes.neutral[5].color : schemeGenerator.jsonAdapter.palettes.neutral[90].color
-        componentFontFace: "JetBrainsMono Nerd Font"
+        color: schemeGenerator.jsonAdapter.colors.background.default.color
+        componentFontFace: "BigBlueTermPlus Nerd Font"
+        componentFontSize: 24
+        componentFontColor: "white"
+
         imageFilePath: "~/Pictures/Wallpapers/Misc_MicrowaveArray.jpg"
     }
 
     Bar.Bar {
-        implicitHeight: screen.height * 0.025
+        implicitHeight: screen.height * 0.03
 
-        leftColor: schemeGenerator.jsonAdapter.palettes.primary[5].color
+        leftColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color
 
-        elementColor: schemeGenerator.jsonAdapter.palettes.neutral[80].color
+        elementColor: schemeGenerator.jsonAdapter.colors.primary.default.color
         elementFontFace: "BigBlueTermPlus Nerd Font"
         elementFontSize: 8
     }
