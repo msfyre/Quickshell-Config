@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
+import QtQuick.Layouts
 import Quickshell.Hyprland
 
 Item {
@@ -8,63 +9,105 @@ Item {
 
     readonly property Transition moveTransition: Transition {
         NumberAnimation {
-            property: "x"
+            properties: "x, width"
             easing.type: Easing.OutBack
             duration: 200
         }
     }
 
-    property string monitorIndicatorFontFace: "monospace"
-    property double monitorIndicatorFontSize: 10 // pixels, not points.
+    property string elementColor: "white"
+    property double elementHeight: 10
+    property string elementFontFace: "monospace"
 
-    implicitWidth: row.implicitWidth + row.spacing
-    implicitHeight: row.implicitHeight
+    // spacing is multiplied by 2 to account for the margin
+    implicitWidth: rowLayout.implicitWidth + (rowLayout.spacing * 2)
+    implicitHeight: rowLayout.implicitHeight
 
-    Row {
-        id: row
+    RowLayout {
+        id: rowLayout
 
         anchors.fill: parent
-        spacing: 5
 
-        add: root.moveTransition
-        move: root.moveTransition
+        Text {
+            Layout.alignment: Qt.AlignVCenter
 
-        Repeater {
-            model: Hyprland.workspaces.values
+            color: root.elementColor
 
-            MouseArea {
-                id: wsItem
+            font.family: root.elementFontFace
+            font.pixelSize: root.elementHeight
+        }
 
-                required property var modelData
-                property HyprlandWorkspace workspace: modelData
+        Text {
+            Layout.alignment: Qt.AlignVCenter
+            text: "M" + (Hyprland.focusedWorkspace.monitor.id + 1) + "|" + "W" + Hyprland.focusedWorkspace.id
 
-                implicitWidth: workspace.focused ? 20 : 10
-                implicitHeight: 10
+            color: root.elementColor
 
-                anchors.verticalCenter: parent.verticalCenter
+            font.family: root.elementFontFace
+            font.pixelSize: root.elementHeight
+        }
 
-                hoverEnabled: true
+        Row {
+            id: row
 
-                Rectangle {
-                    anchors.fill: parent
+            Layout.fillWidth: true
+            spacing: 5
 
-                    color: wsItem.workspace.focused ? "white" : "transparent"
+            add: root.moveTransition
+            move: root.moveTransition
+            populate: root.moveTransition
 
-                    border.color: "white"
-                    border.width: 2
+            Layout.alignment: Qt.AlignVCenter
 
-                    radius: width / 2
+            Repeater {
+                model: Hyprland.workspaces.values
 
-                    Behavior on color {
-                        PropertyAnimation {
-                            easing.type: Easing.InOutSine
-                            duration: 100
+                MouseArea {
+                    id: wsItem
+
+                    required property var modelData
+                    property HyprlandWorkspace workspace: modelData
+
+                    property bool hovered: false
+
+                    implicitWidth: hovered ? (workspace.focused ? 25 : 12.5) : (workspace.focused ? 20 : 10)
+                    implicitHeight: root.elementHeight
+
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    hoverEnabled: true
+
+                    Rectangle {
+                        id: fill
+
+                        anchors.fill: parent
+
+                        color: wsItem.workspace.focused ? "white" : "transparent"
+
+                        border.color: "white"
+                        border.width: 1.5
+
+                        radius: 2
+
+                        Behavior on color {
+                            PropertyAnimation {
+                                easing.type: Easing.InOutSine
+                                duration: 100
+                            }
                         }
                     }
-                }
 
-                onClicked: {
-                    workspace.activate();
+                    onEntered: {
+                        hovered = true;
+                    }
+
+                    onExited: {
+                        hovered = false;
+                    }
+
+                    onClicked: {
+                        workspace.activate();
+                    }
                 }
             }
         }

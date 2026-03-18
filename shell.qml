@@ -27,7 +27,8 @@ ShellRoot {
 
         leftColor: schemeGenerator.jsonAdapter.palettes.primary[5].color
 
-        elementFontFace: "JetBrainsMono Nerd Font"
-        elementFontSize: 10
+        elementColor: schemeGenerator.jsonAdapter.palettes.neutral[80].color
+        elementFontFace: "BigBlueTermPlus Nerd Font"
+        elementFontSize: 8
     }
 }

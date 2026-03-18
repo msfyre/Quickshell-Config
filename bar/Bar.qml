@@ -15,6 +15,7 @@ PanelWindow {
 
     property string leftColor: "red"
 
+    property string elementColor: "white"
     property string elementFontFace: "monospace"
     property double elementFontSize: 10
 
@@ -38,12 +39,12 @@ PanelWindow {
         implicitHeight: root.height
 
         Rectangle {
-            implicitWidth: left.width + left.anchors.leftMargin + left.anchors.rightMargin
+            implicitWidth: left.width + left.anchors.leftMargin
             implicitHeight: left.height
             color: root.leftColor
 
-            topRightRadius: width / 24
-            bottomRightRadius: width / 24
+            topRightRadius: width / 2
+            bottomRightRadius: width / 2
 
             Behavior on implicitWidth {
                 NumberAnimation {
@@ -66,16 +67,10 @@ PanelWindow {
 
             spacing: 10
 
-            Monitor {
-                font.family: root.elementFontFace
-                font.pixelSize: root.elementFontSize
-
-                color: "white"
-            }
-
             Workspaces {
-                monitorIndicatorFontFace: root.elementFontFace
-                monitorIndicatorFontSize: root.elementFontSize
+                elementColor: root.elementColor
+                elementHeight: root.elementFontSize
+                elementFontFace: root.elementFontFace
             }
         }
     }
