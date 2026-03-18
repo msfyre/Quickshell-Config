@@ -1,14 +1,21 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
-import QtQuick.Layouts
 import Quickshell.Hyprland
 
-MouseArea {
+Item {
     id: root
 
-    required property var bar
-    readonly property HyprlandMonitor monitor: Hyprland.monitorFor(bar.screen)
+    readonly property Transition moveTransition: Transition {
+        NumberAnimation {
+            property: "x"
+            easing.type: Easing.OutBack
+            duration: 200
+        }
+    }
+
+    property string monitorIndicatorFontFace: "monospace"
+    property double monitorIndicatorFontSize: 10 // pixels, not points.
 
     implicitWidth: row.implicitWidth + row.spacing
     implicitHeight: row.implicitHeight
@@ -17,16 +24,10 @@ MouseArea {
         id: row
 
         anchors.fill: parent
-
         spacing: 5
 
-        add: Transition {
-            NumberAnimation {
-                property: "x"
-                easing.type: Easing.OutBack
-                duration: 200
-            }
-        }
+        add: root.moveTransition
+        move: root.moveTransition
 
         Repeater {
             model: Hyprland.workspaces.values
@@ -37,13 +38,17 @@ MouseArea {
                 required property var modelData
                 property HyprlandWorkspace workspace: modelData
 
-                implicitWidth: 10
+                implicitWidth: workspace.focused ? 20 : 10
                 implicitHeight: 10
+
+                anchors.verticalCenter: parent.verticalCenter
 
                 hoverEnabled: true
 
                 Rectangle {
                     anchors.fill: parent
+
+                    radius: width / 2
                 }
 
                 onClicked: {
@@ -52,16 +57,13 @@ MouseArea {
             }
         }
 
-        Rectangle {
-            id: wsName
+        Text {
+            anchors.verticalCenter: parent.verticalCenter
+            text: " MONITOR " + (Hyprland.focusedWorkspace.monitor.id + 1)
+            color: "white"
 
-            Text {
-                text: "WORKSPACE " + Hyprland.focusedWorkspace.id
-
-                color: "black"
-
-                anchors.centerIn: parent
-            }
+            font.family: root.monitorIndicatorFontFace
+            font.pixelSize: root.monitorIndicatorFontSize
         }
     }
 }

@@ -15,6 +15,9 @@ PanelWindow {
 
     property string leftColor: "red"
 
+    property string elementFontFace: "monospace"
+    property double elementFontSize: 10
+
     anchors {
         top: true
         left: true
@@ -39,8 +42,8 @@ PanelWindow {
             implicitHeight: left.height
             color: root.leftColor
 
-            topRightRadius: width / 8
-            bottomRightRadius: width / 8
+            topRightRadius: width / 24
+            bottomRightRadius: width / 24
 
             Behavior on implicitWidth {
                 NumberAnimation {
@@ -63,8 +66,16 @@ PanelWindow {
 
             spacing: 10
 
+            User {
+                font.family: root.elementFontFace
+                font.pixelSize: root.elementFontSize
+
+                color: "white"
+            }
+
             Workspaces {
-                bar: bar
+                monitorIndicatorFontFace: root.elementFontFace
+                monitorIndicatorFontSize: root.elementFontSize
             }
         }
     }

@@ -3,7 +3,6 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 
-import "./Globals.qml"
 import "bar" as Bar
 import "utilities" as Utilities
 
@@ -12,6 +11,7 @@ ShellRoot {
         id: schemeGenerator
         isDarkMode: true
         imageFilePath: bg.imageFilePath
+        baseColor: "#000000"
     }
 
     BG {
@@ -23,6 +23,11 @@ ShellRoot {
     }
 
     Bar.Bar {
-        height: screen.height * 0.025
+        implicitHeight: screen.height * 0.025
+
+        leftColor: schemeGenerator.jsonAdapter.palettes.primary[5].color
+
+        elementFontFace: "JetBrainsMono Nerd Font"
+        elementFontSize: 10
     }
 }
