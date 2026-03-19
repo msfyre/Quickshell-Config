@@ -1,13 +1,14 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
-import QtQuick.Layouts
 import Quickshell.Hyprland
 
 Item {
     id: root
 
     readonly property HyprlandWorkspace activeWorkspace: Hyprland.focusedWorkspace
+    readonly property HyprlandToplevel activeWindow: Hyprland.activeToplevel
+
     readonly property Transition moveTransition: Transition {
         NumberAnimation {
             properties: "x, width"
@@ -29,14 +30,15 @@ Item {
         tooltip.text = "";
     }
 
-    RowLayout {
+    Row {
         id: layout
 
         spacing: 7.5
 
-        Text {
-            Layout.alignment: Qt.AlignVCenter
+        move: root.moveTransition
 
+        Text {
+            anchors.verticalCenter: parent.verticalCenter
             color: root.elementColor
 
             font.family: root.elementFontFace
@@ -44,7 +46,7 @@ Item {
         }
 
         Text {
-            Layout.alignment: Qt.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
             text: "M" + (Hyprland.focusedWorkspace.monitor.id + 1) + ": WORKSPACE " + Hyprland.focusedWorkspace.id
 
             color: root.elementColor
@@ -60,7 +62,7 @@ Item {
             move: root.moveTransition
             populate: root.moveTransition
 
-            Layout.alignment: Qt.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
 
             Repeater {
                 model: Hyprland.workspaces.values
@@ -137,7 +139,7 @@ Item {
         Text {
             id: tooltip
 
-            Layout.alignment: Qt.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
 
             text: ""
             color: root.elementColor
@@ -158,8 +160,12 @@ Item {
         Row {
             id: process_row
 
-            Layout.alignment: Qt.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
 
+            // constants
+            readonly property int characterLimitPerName: 20
+
+            // vars
             property HyprlandWorkspace trackingWorkspace: root.activeWorkspace
 
             spacing: 10
@@ -184,16 +190,19 @@ Item {
             // ADDENDUM 2: it never appeared again wtf how
             // (@msfyre, 3/19/2026)
             Repeater {
-                model: root.activeWorkspace.toplevels
+                model: process_row.trackingWorkspace.toplevels
 
                 Text {
-                    id: processDisplay
-
                     required property int index
                     required property var modelData
+
                     property HyprlandToplevel toplevel: modelData
 
-                    text: "* [" + (index + 1) + "] " + toplevel.title
+                    readonly property string textToRender: toplevel.title.length > process_row.characterLimitPerName
+                    ? "..." + toplevel.title.substring(toplevel.title.length - process_row.characterLimitPerName, toplevel.title.length)
+                    : toplevel.title
+
+                    text: "* [" + (index + 1) + "] " + textToRender.toUpperCase()
 
                     color: root.elementColor
                     font.family: root.elementFontFace

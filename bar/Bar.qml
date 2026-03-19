@@ -39,6 +39,12 @@ PanelWindow {
         implicitHeight: root.height
 
         Rectangle {
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+                left: parent.left
+            }
+
             implicitWidth: left.width + left.anchors.leftMargin
             implicitHeight: left.height
             color: root.leftColor
@@ -48,10 +54,21 @@ PanelWindow {
 
             Behavior on implicitWidth {
                 NumberAnimation {
-                    easing.type: Easing.OutBack
+                    easing.type: Easing.OutQuart
                     duration: 200
                 }
             }
+        }
+
+        Rectangle {
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+                right: parent.right
+            }
+
+            implicitWidth: right.width + right.anchors.rightMargin
+            implicitHeight: right.height
         }
 
         RowLayout {
@@ -61,8 +78,8 @@ PanelWindow {
                 top: parent.top
                 bottom: parent.bottom
                 left: parent.left
-                leftMargin: 5
-                rightMargin: 5
+                leftMargin: 10
+                rightMargin: 10
             }
 
             spacing: 10
@@ -72,6 +89,20 @@ PanelWindow {
                 elementHeight: root.elementFontSize
                 elementFontFace: root.elementFontFace
             }
+        }
+
+        RowLayout {
+            id: right
+
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+                right: parent.right
+                leftMargin: 10
+                rightMargin: 10
+            }
+
+            spacing: 10
         }
     }
 }
