@@ -9,6 +9,7 @@ Item {
     property MprisPlayer trackedPlayer: null
     property double trackedPlayerPosition: trackedPlayer.position
     readonly property string trackedPlayerIdentity: trackedPlayer.identity.toLowerCase()
+
     readonly property bool isTrackedPlayerPaused: trackedPlayer.playbackState == MprisPlaybackState.Paused
 
     readonly property MprisPlayer activePlayer: trackedPlayer ?? Mpris.players.values[0] ?? null
