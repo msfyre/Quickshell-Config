@@ -22,13 +22,13 @@ ShellRoot {
         componentFontSize: screen.height * 0.035
         componentFontColor: schemeGenerator.jsonAdapter.colors.primary.default.color
 
-        imageFilePath: "~/Pictures/Wallpapers/LCB_DerFreischutzDomain.png"
+        imageFilePath: "~/Pictures/Wallpapers/Misc_MicrowaveArray.jpg"
     }
 
     Bar.Bar {
         implicitHeight: screen.height * 0.025
 
-        leftColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color
+        barColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color
 
         elementColor: schemeGenerator.jsonAdapter.colors.primary.default.color
         elementFontFace: "BigBlueTermPlus Nerd Font"

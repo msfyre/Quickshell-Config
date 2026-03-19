@@ -13,7 +13,7 @@ PanelWindow {
 
     WlrLayershell.namespace: "shell:bar"
 
-    property string leftColor: "red"
+    property string barColor: "red"
 
     property string elementColor: "white"
     property string elementFontFace: "monospace"
@@ -47,7 +47,7 @@ PanelWindow {
 
             implicitWidth: left.width + left.anchors.leftMargin
             implicitHeight: left.height
-            color: root.leftColor
+            color: root.barColor
 
             topRightRadius: height / 8
             bottomRightRadius: height / 8
@@ -67,8 +67,13 @@ PanelWindow {
                 right: parent.right
             }
 
-            implicitWidth: right.width + right.anchors.rightMargin
+            implicitWidth: right.width + right.anchors.rightMargin + right.anchors.leftMargin
             implicitHeight: right.height
+
+            color: root.barColor
+
+            topLeftRadius: height / 8
+            bottomLeftRadius: height / 8
         }
 
         RowLayout {
@@ -103,6 +108,12 @@ PanelWindow {
             }
 
             spacing: 10
+
+            Music {
+                color: root.elementColor
+                font.family: root.elementFontFace
+                font.pixelSize: root.elementFontSize * 1.1
+            }
         }
     }
 }

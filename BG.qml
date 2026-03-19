@@ -1,11 +1,10 @@
 import QtQuick
-import QtQuick.Layouts
-
 import Quickshell
 import Quickshell.Wayland
 
 import "."
 import "utilities" as Utilities
+import "lyrics" as Lyrics
 
 PanelWindow {
     id: root
@@ -34,6 +33,20 @@ PanelWindow {
         source: resolver.expandPath(root.imageFilePath)
 
         fillMode: Image.PreserveAspectCrop
+    }
+
+    Lyrics.Display {
+        anchors {
+            left: parent.left
+            leftMargin: 10
+            bottom: parent.bottom
+            bottomMargin: 10
+        }
+
+        color: root.componentFontColor
+
+        font.family: root.componentFontFace
+        font.pixelSize: root.componentFontSize * 0.5
     }
 
     Clock {
