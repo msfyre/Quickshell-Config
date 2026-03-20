@@ -74,6 +74,13 @@ PanelWindow {
 
             topLeftRadius: height / 8
             bottomLeftRadius: height / 8
+
+            Behavior on implicitWidth {
+                NumberAnimation {
+                    easing.type: Easing.OutQuart
+                    duration: 200
+                }
+            }
         }
 
         RowLayout {
@@ -108,6 +115,12 @@ PanelWindow {
             }
 
             spacing: 10
+
+            Wallpaper {
+                elementColor: root.elementColor
+                elementFontFace: root.elementFontFace
+                elementFontSize: root.elementFontSize * 1.1
+            }
 
             Music {
                 color: root.elementColor

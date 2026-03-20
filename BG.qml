@@ -2,7 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 
-import "."
+import "bg_components" as Components
 import "utilities" as Utilities
 import "lyrics" as Lyrics
 
@@ -35,22 +35,7 @@ PanelWindow {
         fillMode: Image.PreserveAspectCrop
     }
 
-    Lyrics.Display {
-        anchors {
-            left: parent.left
-            leftMargin: 10
-            bottom: parent.bottom
-            bottomMargin: 10
-        }
-
-        maximumLinesVisible: 5
-
-        componentColor: root.componentFontColor
-        componentFontFace: root.componentFontFace
-        componentFontSize: root.componentFontSize * 0.6
-    }
-
-    Clock {
+    Components.Clock {
         anchors {
             right: parent.right
             rightMargin: 10

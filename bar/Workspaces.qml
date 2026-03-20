@@ -12,8 +12,8 @@ Item {
     readonly property Transition moveTransition: Transition {
         NumberAnimation {
             properties: "x, width"
-            easing.type: Easing.OutBack
-            duration: 200
+            easing.type: Easing.OutQuart
+            duration: 250
         }
     }
 
@@ -75,7 +75,7 @@ Item {
 
                     property bool hovered: false
 
-                    implicitWidth: hovered ? (workspace.focused ? 25 : 12.5) : (workspace.focused ? 20 : 10)
+                    implicitWidth: (hovered ? (workspace.focused ? root.elementHeight * 2.5 : root.elementHeight * 1.25) : (workspace.focused ? root.elementHeight * 2 : root.elementHeight)) * 1.2
                     implicitHeight: root.elementHeight
 
                     anchors.verticalCenter: parent.verticalCenter
@@ -200,7 +200,7 @@ Item {
 
                     readonly property string textToRender: toplevel.title.length > process_row.characterLimitPerName ? "..." + toplevel.title.substring(toplevel.title.length - process_row.characterLimitPerName, toplevel.title.length) : toplevel.title
 
-                    text: "* [" + (index + 1) + "] " + textToRender.toUpperCase()
+                    text: "* [" + (toplevel.activated ? "*" : (index + 1)) + "] " + textToRender.toUpperCase()
 
                     color: root.elementColor
                     font.family: root.elementFontFace

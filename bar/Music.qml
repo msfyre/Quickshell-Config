@@ -5,5 +5,5 @@ import "./../mpris" as Mpris
 
 Text {
     property MprisPlayer player: Mpris.Fetcher.getPlayerByIdentity("mpd")
-    text: player.trackTitle + " - " + player.trackArtist
+    text: player.playbackState == MprisPlaybackState.Playing ? `CURRENTLY PLAYING: ${player.trackTitle} - ${player.trackArtist}` : (player.playbackState == MprisPlaybackState.Paused ? `${player.trackTitle} - ${player.trackArtist} [PAUSED]` : "Uh... where's the music?")
 }
