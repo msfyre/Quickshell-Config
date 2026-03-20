@@ -43,10 +43,11 @@ PanelWindow {
             bottomMargin: 10
         }
 
-        color: root.componentFontColor
+        maximumLinesVisible: 5
 
-        font.family: root.componentFontFace
-        font.pixelSize: root.componentFontSize * 0.5
+        componentColor: root.componentFontColor
+        componentFontFace: root.componentFontFace
+        componentFontSize: root.componentFontSize * 0.6
     }
 
     Clock {

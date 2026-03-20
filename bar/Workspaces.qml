@@ -163,7 +163,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
 
             // constants
-            readonly property int characterLimitPerName: 20
+            readonly property int characterLimitPerName: 50
 
             // vars
             property HyprlandWorkspace trackingWorkspace: root.activeWorkspace
@@ -198,9 +198,7 @@ Item {
 
                     property HyprlandToplevel toplevel: modelData
 
-                    readonly property string textToRender: toplevel.title.length > process_row.characterLimitPerName
-                    ? "..." + toplevel.title.substring(toplevel.title.length - process_row.characterLimitPerName, toplevel.title.length)
-                    : toplevel.title
+                    readonly property string textToRender: toplevel.title.length > process_row.characterLimitPerName ? "..." + toplevel.title.substring(toplevel.title.length - process_row.characterLimitPerName, toplevel.title.length) : toplevel.title
 
                     text: "* [" + (index + 1) + "] " + textToRender.toUpperCase()
 
