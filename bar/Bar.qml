@@ -117,9 +117,9 @@ PanelWindow {
             spacing: 10
 
             Wallpaper {
-                elementColor: root.elementColor
-                elementFontFace: root.elementFontFace
-                elementFontSize: root.elementFontSize * 1.1
+                fontFace: root.elementFontFace
+                fontSize: root.elementFontSize * 1.1
+                fontColor: root.elementColor
             }
 
             Music {

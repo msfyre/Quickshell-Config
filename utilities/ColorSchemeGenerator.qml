@@ -1,14 +1,15 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
+import Quickshell
 import Quickshell.Io
 
 Item {
-    id: utilRoot
+    id: root
 
     property bool isDarkMode: true
+    property color baseColor
     property string imageFilePath
-    property string baseColor
 
     property var jsonAdapter
 
@@ -17,6 +18,12 @@ Item {
 
         running: false
 
+        stdout: StdioCollector {
+            onStreamFinished: {
+                console.log(this.text.trim());
+            }
+        }
+
         stderr: StdioCollector {
             onStreamFinished: {
                 if (this.text.length > 0) {
@@ -24,10 +31,15 @@ Item {
                 }
             }
         }
-        onExited: exitStatus => {
-            if (exitStatus == 0) {
+
+        onExited: (param1, exitStatus) => {
+            console.log(param1, exitStatus);
+
+            if (exitStatus === 0) {
                 console.log("Reloading scheme...");
                 schemeFileView.reload();
+            } else {
+                running = true;
             }
         }
     }
@@ -35,23 +47,23 @@ Item {
     function generateScheme() {
         console.log("Generating scheme...");
 
-        if (utilRoot.imageFilePath.length === 0) {
+        if (root.imageFilePath.length === 0) {
             console.warn("No path specified!");
         }
 
-        console.log("Path:", utilRoot.imageFilePath);
+        console.log("Path:", root.imageFilePath);
+        console.log(`${Quickshell.shellDir}/.colorscheme.json`);
 
-        if (utilRoot.imageFilePath != null) {
-            schemeGenerator.command = ["sh", "-c", "matugen image -j hex --source-color-index 0 " + (isDarkMode ? "-m dark " : "-m light ") + utilRoot.imageFilePath + " > ~/.config/quickshell/.colorscheme.json"];
+        if (root.imageFilePath != null) {
+            schemeGenerator.command = ["sh", "-c", `matugen image -j hex --source-color-index 0 ${(isDarkMode ? "-m dark " : "-m light ")} "${root.imageFilePath}" > ${Quickshell.shellDir}/.colorscheme.json`];
+            schemeGenerator.running = true;
         }
-
-        schemeGenerator.running = true;
     }
 
     FileView {
         id: schemeFileView
 
-        path: Qt.resolvedUrl("../.colorscheme.json")
+        path: `${Quickshell.shellDir}/.colorscheme.json`
 
         blockLoading: true
 
@@ -67,7 +79,7 @@ Item {
 
         onLoaded: {
             if (scheme_adapter != null) {
-                utilRoot.jsonAdapter = scheme_adapter;
+                root.jsonAdapter = scheme_adapter;
             }
         }
     }
