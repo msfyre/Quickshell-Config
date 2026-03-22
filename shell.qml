@@ -4,33 +4,38 @@ import QtQuick
 import Quickshell
 
 import "bar" as Bar
+import "wallpaper" as Wallpaper
 import "utilities" as Utilities
 
 ShellRoot {
+    id: root
+
     Utilities.ColorSchemeGenerator {
         id: schemeGenerator
         isDarkMode: true
-        imageFilePath: bg.imageFilePath
+        imageFilePath: bg.imageFilePath.toString().substring(7)
         baseColor: "#000000"
     }
 
     BG {
         id: bg
 
-        color: schemeGenerator.jsonAdapter.colors.background.default.color
+        color: schemeGenerator.jsonAdapter.colors.background.default.color ?? "black"
         componentFontFace: "BigBlueTermPlus Nerd Font"
         componentFontSize: screen.height * 0.035
-        componentFontColor: schemeGenerator.jsonAdapter.colors.primary.default.color
+        componentFontColor: schemeGenerator.jsonAdapter.colors.primary.default.color ?? "white"
 
-        imageFilePath: "~/Pictures/Wallpapers/Misc_MicrowaveArray.jpg"
+        imageFilePath: Wallpaper.Values.selectedImage ?? "file:///home/msfyre/Pictures/Wallpapers/Terraria_Base.jpg"
     }
 
     Bar.Bar {
+        id: bar
+
         implicitHeight: screen.height * 0.025
 
-        barColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color
+        barColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color ?? ""
 
-        elementColor: schemeGenerator.jsonAdapter.colors.primary.default.color
+        elementColor: schemeGenerator.jsonAdapter.colors.primary.default.color ?? ""
         elementFontFace: "BigBlueTermPlus Nerd Font"
         elementFontSize: implicitHeight / Math.E
     }
