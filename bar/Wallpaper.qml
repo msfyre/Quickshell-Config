@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 
-import "./../wallpaper" as Wallpaper
+import "./../wallpaper_selector" as WallpaperSelector
 
 Item {
     id: root
@@ -11,10 +11,13 @@ Item {
 
     property string fontFace: "monospace"
     property color fontColor: "white"
+    property color selectorBackgroundColor: "black"
     property double fontSize: 10
 
-    Wallpaper.Window {
+    WallpaperSelector.Window {
         id: switcher
+
+        color: root.selectorBackgroundColor
 
         elementFontFace: root.fontFace
         elementFontSize: root.fontSize

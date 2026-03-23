@@ -52,7 +52,6 @@ Item {
         }
 
         console.log("Path:", root.imageFilePath);
-        console.log(`${Quickshell.shellDir}/.colorscheme.json`);
 
         if (root.imageFilePath != null) {
             schemeGenerator.command = ["sh", "-c", `matugen image -j hex --source-color-index 0 ${(isDarkMode ? "-m dark " : "-m light ")} "${root.imageFilePath}" > ${Quickshell.shellDir}/.colorscheme.json`];

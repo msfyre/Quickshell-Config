@@ -10,9 +10,13 @@ Rectangle {
     property color elementColor: "white"
     property string elementFontFace: "monospace"
 
-    signal pathSelected
+    signal pathSelected(filepath: url)
 
     color: "transparent"
+
+    onPathSelected: filepath => {
+        Values.selectedImage = filepath;
+    }
 
     Column {
         id: layout
@@ -49,13 +53,13 @@ Rectangle {
                     }
 
                     onClicked: {
-                        Values.selectedImage = gallery_item.fileUrl;
-                        root.pathSelected();
+                        root.pathSelected(gallery_item.fileUrl);
                     }
                 }
 
                 Row {
                     anchors.fill: parent
+                    spacing: 10
 
                     Image {
                         source: gallery_item.fileIsDir ? "" : gallery_item.fileUrl

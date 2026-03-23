@@ -29,7 +29,10 @@ FloatingWindow {
     }
 
     ColumnLayout {
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            margins: 7.5
+        }
 
         spacing: 0
 
@@ -55,6 +58,9 @@ FloatingWindow {
             Layout.fillHeight: true
 
             entries: selector_entries
+
+            elementColor: root.elementTextColor
+            elementFontFace: root.elementFontFace
 
             onPathSelected: {
                 root.visible = false;

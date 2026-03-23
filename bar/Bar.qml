@@ -13,6 +13,7 @@ PanelWindow {
 
     WlrLayershell.namespace: "shell:bar"
 
+    readonly property double barRadius: height / 8
     property string barColor: "red"
 
     property string elementColor: "white"
@@ -20,23 +21,24 @@ PanelWindow {
     property double elementFontSize: 10
 
     anchors {
-        top: true
         left: true
         right: true
     }
 
     color: "transparent"
 
+    Behavior on barColor {
+        ColorAnimation {
+            duration: 500
+        }
+    }
+
     Item {
         id: bar
 
         anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
+            fill: parent
         }
-
-        implicitHeight: root.height
 
         Rectangle {
             anchors {
@@ -49,8 +51,8 @@ PanelWindow {
             implicitHeight: left.height
             color: root.barColor
 
-            topRightRadius: height / 8
-            bottomRightRadius: height / 8
+            topRightRadius: root.barRadius
+            bottomRightRadius: root.barRadius
 
             Behavior on implicitWidth {
                 NumberAnimation {
@@ -72,8 +74,8 @@ PanelWindow {
 
             color: root.barColor
 
-            topLeftRadius: height / 8
-            bottomLeftRadius: height / 8
+            topLeftRadius: root.barRadius
+            bottomLeftRadius: root.barRadius
 
             Behavior on implicitWidth {
                 NumberAnimation {
@@ -120,6 +122,8 @@ PanelWindow {
                 fontFace: root.elementFontFace
                 fontSize: root.elementFontSize * 1.1
                 fontColor: root.elementColor
+
+                selectorBackgroundColor: root.barColor
             }
 
             Music {

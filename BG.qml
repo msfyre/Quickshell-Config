@@ -11,9 +11,14 @@ PanelWindow {
     WlrLayershell.exclusiveZone: -1 // do not get shoved by other quickshell widgets
 
     property url imageFilePath
+
+    property double componentCornerRadius: 2
+
     property string componentFontFace: "monospace"
     property int componentFontSize: 12
-    property color componentFontColor: "white"
+
+    property color componentTextColor: "white"
+    property color componentBGColor: "black"
 
     implicitWidth: screen.width
     implicitHeight: screen.height
@@ -31,14 +36,16 @@ PanelWindow {
 
     Components.Clock {
         anchors {
-            right: parent.right
-            rightMargin: 10
+            horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
             bottomMargin: 10
         }
 
         componentFontFace: root.componentFontFace
         componentFontSize: root.componentFontSize
-        componentFontColor: root.componentFontColor
+        componentTextColor: root.componentTextColor
+
+        componentBGColor: root.componentBGColor
+        componentCornerRadius: root.componentCornerRadius
     }
 }
