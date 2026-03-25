@@ -21,11 +21,6 @@ ShellRoot {
         id: bg
 
         color: schemeGenerator.jsonAdapter.colors.background.default.color ?? "black"
-        componentFontFace: "BigBlueTermPlus Nerd Font"
-        componentFontSize: screen.height * 0.035
-        componentTextColor: schemeGenerator.jsonAdapter.colors.primary.default.color ?? ""
-        componentBGColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color ?? ""
-        componentCornerRadius: bar.barRadius * 2
 
         imageFilePath: WallpaperSelector.Values.adapter.wallpaper
     }
@@ -42,5 +37,13 @@ ShellRoot {
         elementColor: schemeGenerator.jsonAdapter.colors.primary.default.color ?? ""
         elementFontFace: "BigBlueTermPlus Nerd Font"
         elementFontSize: implicitHeight / Math.E
+    }
+
+    Widgets {
+        componentFontFace: "BigBlueTermPlus Nerd Font"
+        componentFontSize: screen.height * 0.035
+        componentTextColor: schemeGenerator.jsonAdapter.colors.primary.default.color ?? ""
+        componentBGColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color ?? ""
+        componentCornerRadius: bar.barRadius * 2
     }
 }

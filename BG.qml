@@ -2,8 +2,6 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 
-import "bg_components" as Components
-
 PanelWindow {
     id: root
 
@@ -32,20 +30,5 @@ PanelWindow {
         source: root.imageFilePath
 
         fillMode: Image.PreserveAspectCrop
-    }
-
-    Components.Clock {
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            bottom: parent.bottom
-            bottomMargin: 10
-        }
-
-        componentFontFace: root.componentFontFace
-        componentFontSize: root.componentFontSize
-        componentTextColor: root.componentTextColor
-
-        componentBGColor: root.componentBGColor
-        componentCornerRadius: root.componentCornerRadius
     }
 }
