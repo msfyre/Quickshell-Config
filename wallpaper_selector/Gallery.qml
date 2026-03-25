@@ -15,7 +15,7 @@ Rectangle {
     color: "transparent"
 
     onPathSelected: filepath => {
-        Values.selectedImage = filepath;
+        Values.changeSelectedImage(filepath);
     }
 
     Column {

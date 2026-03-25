@@ -31,17 +31,6 @@ Item {
                 }
             }
         }
-
-        onExited: (param1, exitStatus) => {
-            console.log(param1, exitStatus);
-
-            if (exitStatus === 0) {
-                console.log("Reloading scheme...");
-                schemeFileView.reload();
-            } else {
-                running = true;
-            }
-        }
     }
 
     function generateScheme() {
@@ -65,6 +54,7 @@ Item {
         path: `${Quickshell.shellDir}/.colorscheme.json`
 
         blockLoading: true
+        watchChanges: true
 
         JsonAdapter {
             id: scheme_adapter
@@ -81,6 +71,7 @@ Item {
                 root.jsonAdapter = scheme_adapter;
             }
         }
+        onFileChanged: reload()
     }
 
     onImageFilePathChanged: {

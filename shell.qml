@@ -27,7 +27,7 @@ ShellRoot {
         componentBGColor: schemeGenerator.jsonAdapter.colors.primary_container.default.color ?? ""
         componentCornerRadius: bar.barRadius * 2
 
-        imageFilePath: WallpaperSelector.Values.selectedImage ?? "file:///home/msfyre/Pictures/Wallpapers/Terraria_Base.jpg"
+        imageFilePath: WallpaperSelector.Values.adapter.wallpaper
     }
 
     Bar.Bar {

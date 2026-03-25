@@ -34,7 +34,7 @@ FloatingWindow {
             margins: 7.5
         }
 
-        spacing: 0
+        spacing: 5
 
         MouseArea {
             Layout.alignment: Qt.AlignLeft
@@ -67,17 +67,30 @@ FloatingWindow {
             }
         }
 
-        Text {
-            text: "CURRENT FOLDER: " + (selector.selectedFolder.toString().substring(7))
-            color: root.elementTextColor
-            font.family: root.elementFontFace
-            font.pixelSize: root.elementFontSize
-        }
-        Text {
-            text: "SELECTED: " + (Values.selectedImage.toString().substring(7))
-            color: root.elementTextColor
-            font.family: root.elementFontFace
-            font.pixelSize: root.elementFontSize
+        Rectangle {
+            Layout.fillWidth: true
+            implicitHeight: root.elementFontSize * 2
+
+            color: root.color
+
+            ColumnLayout {
+                anchors.fill: parent
+
+                spacing: 0
+
+                Text {
+                    text: "CURRENT FOLDER: " + (selector.selectedFolder.toString().substring(7))
+                    color: root.elementTextColor
+                    font.family: root.elementFontFace
+                    font.pixelSize: root.elementFontSize
+                }
+                Text {
+                    text: "SELECTED: " + (Values.adapter.wallpaper.toString().substring(7))
+                    color: root.elementTextColor
+                    font.family: root.elementFontFace
+                    font.pixelSize: root.elementFontSize
+                }
+            }
         }
     }
 }
